@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+
+    <!--FONTS-->
+    <!--Roboto font from google    link: https://fonts.google.com/selection/embed  -->  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <!--Our stylesheet-->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!--Script--(module because we import module (functions) from firbease)-->
+    <script type="module" src="script.js"></script>
+
+
+</head>
+<body>
+    <div id="navbar-area">
+        <h1>Today's To-Do List</h1>
+    </div>
+
+    <div id="mainarea">
+
+        <div class="newItem-area">
+            <input type="text" id="input-field" placeholder="Add Task">
+            <button id="add-button">Add</button>
+
+            <ul id="task-list">
+                <li>task 1</li>
+                <li>task 2</li>
+            </ul>
+
+        </div>
+        
+    </div>
+
+    
+
+    <div id="loginCard">
+        <!--https://www.w3schools.com/css/css_form.asp-->
+        <!--https://www.w3schools.com/css/tryit.asp?filename=trycss_forms-->
+        <!--https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgdrhY6zM7txEf61nPO67_Cl7rOyCGsyEb9GaIEqe3M-p-yN2nJeBUGCXkDygK7t8xYVcKwSgu4v0_u6EZF5srUh16p0vNl1K8hBeBV8dg-KcOpt7y8vrkamMOU2HxW0STp0JDEp21FWuCWxDXZX0EtxoLPSBWR6WwhXZglXIvWXbh24ojuyofD6htY8D4/s3396/userinter.png-->
+        <p>Image of notes</p>
+        <h1 id="login-title">Sign in</h1>
+        
+        <input id="email" type="email" placeholder="Email">
+        <input id="password" type="password" placeholder="Password">
+        <input id="password2" type="password" placeholder="Confirm password">
+
+        <button id="sign-in">Sign in</button>
+        <br><br>
+        <button id="forgot">Forgot password?</button> 
+        <button id="create-account">Create Account</button>
+        <button id="sign-up">Sign Up</button>
+        <button id="cancel-create-account"> Cancel</button>
+    </div>
+
+    <!--Temporary info for debugging purposes-->
+    <div class="user-details-container">
+        Firebase sign-in status:
+        <span id="sign-in-status">Unknown</span>
+        <div>Firebase auth <code>currentUser</code> object value:</div>
+        <pre><code id="account-details">null</code></pre>
+    </div>
+
+    
+</body>
+
+
+</html>
