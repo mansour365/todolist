@@ -63,7 +63,6 @@ p{
     border-bottom: solid 1px rgb(217, 217, 217);
 }
 
-
 /*Flex container*/
 #mainarea{    
     /*display: none;*/
@@ -71,13 +70,48 @@ p{
     flex-direction: row; /*items are layout in row direction*/
     flex-wrap: nowrap; /*all items will appear on one line (no wrapping)*/
     flex-grow:1; /*Needed so that notes area extends to bottom of screen*/
-    background-color: rgb(218, 233, 249);
+    background-color: rgb(255, 250, 248);
 }
-.newItem-area{
-    margin: 0 auto;
-}
-#input-field{
 
+.TaskArea{
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.createTaskArea{
+    margin-left:auto;
+    margin-right:auto;
+    border: solid red 1px;
+
+}
+
+#input-field{
+    /*max-width: 300px;*/
+    height:30px;
+    border-radius:8px;
+    width:280px
+}
+
+#add-button{
+    height:30px;
+    border-radius: 8px;
+}
+
+ul{
+    display:flex;
+    max-width: 300px;
+    flex-wrap: wrap;
+    list-style-type: none;
+    gap: 10px;
+    border: solid red 1px;
+}
+
+ul li{
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+    max-height: 20px;
 }
 
 .user-details-container{
