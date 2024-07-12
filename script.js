@@ -14,18 +14,23 @@ const inputFieldEl = document.getElementById("input-field");
 const addBtnEl = document.getElementById("add-button");
 const taskListEL = document.getElementById("task-list");
 
+//this function runs everytime there is an edit to the database
 onValue(tasksInDB, function(snapshot){
+    
     let tasksArray = Object.values(snapshot.val());
-    console.log(tasksArray);
 
-    for(let i = 0; i < tasksArray.length ; i++)
-    {
+    clearTasksListEL();
+
+    for(let i = 0; i < tasksArray.length ; i++){
         console.log("this is the "+i+"th entry")
         console.log(tasksArray[i]);
         appendTaskToTaskListEl(tasksArray[i]);
     }
 })
 
+function clearTasksListEL(){
+    taskListEL.innerHTML = '';
+}
 
 
 
@@ -36,8 +41,9 @@ function handleNewTask(){
     //clear input field when add button is pressed
     clearInputFieldEl();
     //add new task to page
-    appendTaskToTaskListEl(inputValue);
+    //appendTaskToTaskListEl(inputValue);
 }
+
 
 
 //function to clear input field
@@ -61,7 +67,6 @@ let UserEmails = Object.values(Users); //array of emails
 let UserIDs = Object.keys(Users); //array of keys
 
 let UserEntries = Object.entries(Users); //entries
-
 
 console.log(UserEmails)
 console.log(UserIDs)
