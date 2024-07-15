@@ -22,6 +22,10 @@ html, body{
 }
 
 /********************** Login Portion **********************/
+h1{
+    font-weight: 500;
+    border: blue 1px solid;
+}
 p{
     margin:auto;
 }
@@ -59,7 +63,7 @@ p{
     height: 53px; /*height of navbar is 53px (This height is fixed)*/
     flex-direction: row; /*items in this flexbox are stacked left ot right*/
     flex-wrap: nowrap; /*Make sure no wrapping occurs*/
-    background-color: rgb(244, 243, 244);
+    background-color: rgb(213, 176, 150);
     border-bottom: solid 1px rgb(217, 217, 217);
 }
 
@@ -67,52 +71,95 @@ p{
 #mainarea{    
     /*display: none;*/
     display:flex; /*estblish that this container uses flexbox*/
-    flex-direction: row; /*items are layout in row direction*/
+    flex-direction: column; /*items are layout in row direction*/
     flex-wrap: nowrap; /*all items will appear on one line (no wrapping)*/
     flex-grow:1; /*Needed so that notes area extends to bottom of screen*/
     background-color: rgb(255, 250, 248);
+    background-color: rgb(237, 224, 216);
+    /*border: blue 1px solid;*/
 }
+
+
+.titleAndInputSection{
+    margin-left:auto;
+    margin-right:auto;
+    width:70%;
+    /*border: green 1px solid;*/
+}
+
+
+.titleArea{
+    display:flex;
+    flex-direction: column;
+    /*border: red 1px solid;*/
+}
+.title{
+    font-weight: 500;
+    font-size: 30px;
+}
+#dateArea{
+    margin-bottom:50px;
+}
+
+
+.inputArea{
+    display:flex;
+    justify-content: flex-start;
+    gap:10px; /*the gap betwwen the input and button*/
+    margin-left:auto;
+    margin-right:auto;
+    /*border: solid red 1px;*/
+}
+#input-field{
+    font-family: "Roboto", sans-serif; /*input fields need this to take effect*/
+    font-size: 18px;
+    text-align:center;
+    border:0; /*remove the outline around input field*/
+    border-radius:8px;
+    width:100%;
+    padding: 6px;
+}
+#add-button{
+    font-family: "Roboto", sans-serif; /*input fields need this to take effect*/
+    font-size: 18px;
+    text-align:center;
+    border:0; /*remove the outline around button*/
+    border-radius: 8px;
+    width:40px;
+    padding: 6px;
+}
+
+
+
 
 .TaskArea{
+    width:80%;
     margin-left:auto;
     margin-right:auto;
+    /*border: rgb(21, 108, 3) 1px solid;*/
 }
-
-.createTaskArea{
-    margin-left:auto;
-    margin-right:auto;
-    border: solid red 1px;
-
-}
-
-#input-field{
-    /*max-width: 300px;*/
-    height:30px;
-    border-radius:8px;
-    width:280px
-}
-
-#add-button{
-    height:30px;
-    border-radius: 8px;
-}
-
 ul{
-    display:flex;
-    max-width: 300px;
-    flex-wrap: wrap;
-    list-style-type: none;
-    gap: 10px;
-    border: solid red 1px;
+    list-style-type: none;  /*Removes the dot at begining of a task*/
+    display:flex; /*list of tasks will use flexbox*/
+    flex-wrap: wrap; /*makes sure the flexbox elements will wrap*/
+    justify-content: center;
+    gap: 10px; /*gap between each task element*/
+    padding-left:0; /*Needed because a list will create an unessesary space on the left*/
+    /*border: solid red 1px;*/
+}
+ul li{
+    background-color: rgb(255, 255, 255);  /*color of a task element*/
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2); /*shadow around a task element*/
+    padding: 15px;  /*padding inside a task element*/
+    border-radius: 8px; /*radius of a task element*/
+    height: 20px; /*height of a task element*/
+    min-width: 100px; /*minumum width of a task element*/
+    flex-grow:1; /*makes each task fill any remainding space beside*/
+    text-align: center; /*align text to center of task*/
 }
 
-ul li{
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
-    padding: 15px;
-    border-radius: 8px;
-    max-height: 20px;
-}
+
+
 
 .user-details-container{
     background-color: rgb(227, 187, 187);

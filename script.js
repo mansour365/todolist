@@ -24,18 +24,29 @@ const tasksInDB = ref(database, "tasks");
 const inputFieldEl = document.getElementById("input-field");
 const addBtnEl = document.getElementById("add-button");
 const taskListEL = document.getElementById("task-list");
+const dateAreaEl = document.getElementById("dateArea");
+
+todayDate(); //Show current date on page load
+
 
 //this function runs everytime there is an edit to the database
 //first argument is folder in database, next argument is a function that receives a snapshot of the database
 onValue(tasksInDB, function(snapshot){
-    //Using Objects.values() we can take the firebase snapshot object and convert to array
+    //Using Objects.entries() we can take the firebase snapshot object and convert to array. 
+    //This will be an array of key value pairs, so array of arrays.
     //We can use Object.keys, Object.values or Object.entries
-    let tasksArray = Object.values(snapshot.val());
+    let tasksArray = Object.entries(snapshot.val());
     //Clear the current HTML list, because we will update with new list
     clearTasksListEL();
     //Create a new HTML list using the array we aquired
     for(let i = 0; i < tasksArray.length ; i++){
-        appendTaskToTaskListEl(tasksArray[i]);
+        let currentItem = tasksArray[i];
+
+        let currentItemID = currentItem[0];
+        
+        let currentItemValue = currentItem[1];
+
+        appendTaskToTaskListEl(currentItem);
     }
 })
 
@@ -45,6 +56,10 @@ function clearTasksListEL(){
 
 function handleNewTask(){
     let inputValue = inputFieldEl.value;
+    //Don't push if input is empty
+    if(inputValue == ""){
+        return;
+    }
     //push the input value to the database
     push(tasksInDB, inputValue);
     //clear input field when add button is pressed
@@ -59,25 +74,29 @@ function clearInputFieldEl(){
 }
 
 //function to add new task to the page
-function appendTaskToTaskListEl(someValue){
-    taskListEL.innerHTML += `<li>${someValue}</li>`;
+function appendTaskToTaskListEl(someItem){
+    let itemID = someItem[0];
+    let itemValue = someItem[1]; 
+    //taskListEL.innerHTML += `<li>${someValue}</li>`;
+    let newEl = document.createElement("li"); //Create an "li" element
+    newEl.textContent = itemValue;  //Put the value argument inside the "li" element
+
+    taskListEL.append(newEl); //append the "li" element to the list
 }
 
-let Users = {
-    "00":"sindra@scrimba.com",
-    "01":"per@scrimba.com",
-    "02":"frode@scrimba.com"
+
+function todayDate(){
+    const d = new Date();
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const months = ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+
+    let day = days[d.getDay()];
+    let month = months[d.getMonth()];
+    let dateNum = d.getDate();
+    let year = d.getFullYear();
+
+    dateAreaEl.innerHTML = `<p>${day},  ${month} ${dateNum} ${year}</p>`;
 }
-
-let UserEmails = Object.values(Users); //array of emails
-
-let UserIDs = Object.keys(Users); //array of keys
-
-let UserEntries = Object.entries(Users); //entries
-
-console.log(UserEmails)
-console.log(UserIDs)
-console.log(UserEntries)
 
 
 
