@@ -4,7 +4,7 @@ import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase
 //ref needed to access the specific folder in the database
 //push needed to push a value to the folder on database
 //onValue method will run anytime an edit is made to the database
-import {getDatabase, ref, push, onValue} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import {getDatabase, ref, push, onValue, remove} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 //these app settings fields are needed to craete an app object
 //the app object will be created with the initializeApp function
@@ -32,22 +32,28 @@ todayDate(); //Show current date on page load
 //this function runs everytime there is an edit to the database
 //first argument is folder in database, next argument is a function that receives a snapshot of the database
 onValue(tasksInDB, function(snapshot){
-    //Using Objects.entries() we can take the firebase snapshot object and convert to array. 
-    //This will be an array of key value pairs, so array of arrays.
-    //We can use Object.keys, Object.values or Object.entries
-    let tasksArray = Object.entries(snapshot.val());
-    //Clear the current HTML list, because we will update with new list
-    clearTasksListEL();
-    //Create a new HTML list using the array we aquired
-    for(let i = 0; i < tasksArray.length ; i++){
-        let currentItem = tasksArray[i];
+    //First we check if snapshot exists. Otherwise we will just display no tasks yet.
+    if(snapshot.exists()){
+        //Using Objects.entries() we can take the firebase snapshot object and convert to array. 
+        //This will be an array of key value pairs, so array of arrays.
+        //We can use Object.keys, Object.values or Object.entries
+        let tasksArray = Object.entries(snapshot.val());
+        //Clear the current HTML list, because we will update with new list
+        clearTasksListEL();
+        //Create a new HTML list using the array we aquired
+        for(let i = 0; i < tasksArray.length ; i++){
+            let currentItem = tasksArray[i];
+            //This currentItem is actually an array of [ID, task].
+            //So we can check the ID and task sepreately later on ex. currentItem[0]
 
-        let currentItemID = currentItem[0];
-        
-        let currentItemValue = currentItem[1];
-
-        appendTaskToTaskListEl(currentItem);
+            appendTaskToTaskListEl(currentItem);
+        }
     }
+    else{
+        //In this case no snapshots exist so display no more tasks.
+        taskListEL.innerHTML = "No more tasks. ";
+    }
+
 })
 
 function clearTasksListEL(){
@@ -77,9 +83,17 @@ function clearInputFieldEl(){
 function appendTaskToTaskListEl(someItem){
     let itemID = someItem[0];
     let itemValue = someItem[1]; 
-    //taskListEL.innerHTML += `<li>${someValue}</li>`;
+
     let newEl = document.createElement("li"); //Create an "li" element
     newEl.textContent = itemValue;  //Put the value argument inside the "li" element
+
+    //Event listener that checks if any element was clicked on and the removes it
+    newEl.addEventListener("click", function(){
+        //exact location (ref followed by the databse, followed by the location of ID)
+        let exactLocationOfItemInDB = ref(database, `tasks/${itemID}`);
+        //A firebase function that takes an exact location and deletes that item
+        remove(exactLocationOfItemInDB);
+    })
 
     taskListEL.append(newEl); //append the "li" element to the list
 }
@@ -100,19 +114,12 @@ function todayDate(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//Event listener if click the "+" button
 addBtnEl.addEventListener("click", handleNewTask, false);
+//Event listener if press the "Enter" key
+inputFieldEl.addEventListener("keypress", function(event){
+    if(event.key === "Enter"){
+        event.preventDefault();
+        handleNewTask();
+    }
+})

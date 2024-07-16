@@ -127,6 +127,11 @@ p{
     border-radius: 8px;
     width:40px;
     padding: 6px;
+    background-color: rgb(217, 176, 152);
+}
+#add-button:hover{
+    background-color: rgb(207, 166, 142);
+    cursor: pointer;
 }
 
 
@@ -156,6 +161,16 @@ ul li{
     min-width: 100px; /*minumum width of a task element*/
     flex-grow:1; /*makes each task fill any remainding space beside*/
     text-align: center; /*align text to center of task*/
+
+    /*this three needed to keep one line and end in ellipsis*/
+    white-space: nowrap; /*keeps text limited to one line*/
+    overflow:hidden; /*make sure line does not go outside the div*/
+    text-overflow: ellipsis; /*ends the line in ellipses*/
+}
+ul li:hover{
+    cursor: pointer;
+    
+
 }
 
 
