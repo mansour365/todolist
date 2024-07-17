@@ -47,11 +47,9 @@ p{
 #sign-up{
     display:none;
 }
-
 #password2{
     display:none;
 }
-
 #cancel-create-account{
     display:none;
 }
@@ -67,70 +65,108 @@ p{
     border-bottom: solid 1px rgb(217, 217, 217);
 }
 
-/*Flex container*/
+/*2 sections are sidebar and main area*/
+.two-section{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    flex-grow:1;
+    justify-content: flex-start;
+}
+
+#sidebar{
+    display:flex;
+    flex-direction: column;
+    flex-wrap:nowrap;
+    background-color: rgb(237, 239, 229);
+    background-color:rgb(236, 229, 218 );
+    gap: 30px;
+    padding-top: 50px;
+    /*border: red solid 1px;*/
+}
+#sidebar a{
+    margin-left:30px;
+    margin-right:30px;
+    color: black;
+    background-color: rgba(213, 232, 202, 0);
+    padding:8px 10px;
+    border-radius: 100px;
+}
+
+#sidebar a.active{
+    background-color: rgb(213, 232, 202);
+    & .material-symbols-outlined{
+        font-variation-settings:
+        'FILL' 1,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+    }
+}
+#sidebar a:hover{
+    background-color: rgb(185, 201, 176);
+    & .material-symbols-outlined{
+        font-variation-settings:
+        'FILL' 1,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+    }
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+
 #mainarea{    
-    /*display: none;*/
     display:flex; /*estblish that this container uses flexbox*/
     flex-direction: column; /*items are layout in row direction*/
     flex-wrap: nowrap; /*all items will appear on one line (no wrapping)*/
-    flex-grow:1; /*Needed so that notes area extends to bottom of screen*/
-    background-color: rgb(255, 250, 248);
-    background-color: rgb(237, 224, 216);
+    background-color: rgb(237, 239, 229);
+    background-color:rgb(236, 229, 218 );
+    width:100%; /*take up 9 values of width*/
     /*border: blue 1px solid;*/
 }
 
 
-.titleAndInputSection{
-    margin-left:auto;
-    margin-right:auto;
-    width:70%;
-    /*border: green 1px solid;*/
-}
-
-
-.titleArea{
-    display:flex;
-    flex-direction: column;
-    /*border: red 1px solid;*/
-}
-.title{
-    font-weight: 500;
-    font-size: 30px;
-}
-#dateArea{
-    margin-bottom:50px;
-}
-
 
 .inputArea{
+    margin-left: 25px;
+    margin-right: 25px;
+    padding-top:40px;
+    padding-bottom: 40px;
     display:flex;
     justify-content: flex-start;
     gap:10px; /*the gap betwwen the input and button*/
-    margin-left:auto;
-    margin-right:auto;
+    height: 45px;
     /*border: solid red 1px;*/
 }
 #input-field{
     font-family: "Roboto", sans-serif; /*input fields need this to take effect*/
-    font-size: 18px;
+    font-size: 13px;
     text-align:center;
     border:0; /*remove the outline around input field*/
-    border-radius:8px;
-    width:100%;
-    padding: 6px;
+    border-radius:30px;
+    width:50%;
+    padding: 12px;
 }
 #add-button{
     font-family: "Roboto", sans-serif; /*input fields need this to take effect*/
-    font-size: 18px;
+    font-size: 13px;
     text-align:center;
     border:0; /*remove the outline around button*/
-    border-radius: 8px;
-    width:40px;
+    border-radius: 20px;
+    width:90px;
     padding: 6px;
-    background-color: rgb(217, 176, 152);
+    background-color: rgb(255, 220, 173);
 }
 #add-button:hover{
-    background-color: rgb(207, 166, 142);
+    background-color: rgb(224, 195, 157);
     cursor: pointer;
 }
 
@@ -138,29 +174,58 @@ p{
 
 
 .TaskArea{
-    width:80%;
-    margin-left:auto;
-    margin-right:auto;
-    /*border: rgb(21, 108, 3) 1px solid;*/
+    height:100%;
+    margin-left:25px;
+    margin-right:25px;
+    margin-bottom: 20px;
+    background-color: rgb(248, 250, 240);
+    background-color: rgb(252, 252, 252);
+
+    border-radius: 15px;
+    overflow: hidden;
+    /*border: rgb(250, 43, 253) 1px solid;*/
+}
+.task-header{
+    background-color: rgb(243, 245, 235);
+    background-color: rgb(246, 244, 239);
+    height:70px;
+}
+.titleArea{
+    display:flex;
+    flex-direction: column;
+    padding: 15px;
+    /*border: red 1px solid;*/
+}
+.title{
+    font-weight: 400;
+    font-size: 22px;
+    padding-bottom: 4px;
+}
+#dateArea{
+    font-size: 12px;
 }
 ul{
     list-style-type: none;  /*Removes the dot at begining of a task*/
     display:flex; /*list of tasks will use flexbox*/
     flex-wrap: wrap; /*makes sure the flexbox elements will wrap*/
     justify-content: center;
-    gap: 10px; /*gap between each task element*/
+    gap: 20px; /*gap between each task element*/
     padding-left:0; /*Needed because a list will create an unessesary space on the left*/
     /*border: solid red 1px;*/
 }
 ul li{
     background-color: rgb(255, 255, 255);  /*color of a task element*/
+    background-color: rgb(242, 239, 232);
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2); /*shadow around a task element*/
     padding: 15px;  /*padding inside a task element*/
     border-radius: 8px; /*radius of a task element*/
     height: 20px; /*height of a task element*/
-    min-width: 100px; /*minumum width of a task element*/
+    width:100%;
+    margin-left:20px;
+    margin-right:20px;
+    /*min-width: 100px; /*minumum width of a task element*/
     flex-grow:1; /*makes each task fill any remainding space beside*/
-    text-align: center; /*align text to center of task*/
+    text-align: left; /*align text to center of task*/
 
     /*this three needed to keep one line and end in ellipsis*/
     white-space: nowrap; /*keeps text limited to one line*/
@@ -169,10 +234,7 @@ ul li{
 }
 ul li:hover{
     cursor: pointer;
-    
-
 }
-
 
 
 

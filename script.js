@@ -70,8 +70,6 @@ function handleNewTask(){
     push(tasksInDB, inputValue);
     //clear input field when add button is pressed
     clearInputFieldEl();
-    //add new task to page
-    //appendTaskToTaskListEl(inputValue);
 }
 
 //function to clear input field
@@ -92,7 +90,14 @@ function appendTaskToTaskListEl(someItem){
         //exact location (ref followed by the databse, followed by the location of ID)
         let exactLocationOfItemInDB = ref(database, `tasks/${itemID}`);
         //A firebase function that takes an exact location and deletes that item
-        remove(exactLocationOfItemInDB);
+        newEl.style.textDecoration="line-through";
+        //Add some delay
+        var delayInMilliseconds = 1000; //1 second
+        setTimeout(function() {
+            remove(exactLocationOfItemInDB); //remove the task from the database
+        }, delayInMilliseconds);
+
+        
     })
 
     taskListEL.append(newEl); //append the "li" element to the list
