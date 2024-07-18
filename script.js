@@ -1,4 +1,3 @@
-
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 //getDatabase needed access the firebase database
 //ref needed to access the specific folder in the database
@@ -25,6 +24,13 @@ const inputFieldEl = document.getElementById("input-field");
 const addBtnEl = document.getElementById("add-button");
 const taskListEL = document.getElementById("task-list");
 const dateAreaEl = document.getElementById("dateArea");
+
+const menuBtnEl = document.getElementById("menu");
+const sidebarEl = document.getElementById("sidebar");
+
+menuBtnEl.onclick = function(){
+    sidebarEl.classList.toggle("active")
+}
 
 todayDate(); //Show current date on page load
 
@@ -119,6 +125,8 @@ function todayDate(){
 
 
 
+
+
 //Event listener if click the "+" button
 addBtnEl.addEventListener("click", handleNewTask, false);
 //Event listener if press the "Enter" key
@@ -128,3 +136,5 @@ inputFieldEl.addEventListener("keypress", function(event){
         handleNewTask();
     }
 })
+
+
