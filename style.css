@@ -78,11 +78,11 @@ p{
     display:flex;
     flex-direction: column;
     flex-wrap:nowrap;
-    background-color: rgb(237, 239, 229);
     background-color:rgb(236, 229, 218 );
     gap: 30px;
     padding-top: 50px;
-    transition: all 1s ;
+    width: 115px; /*width of sidebar is compact mode*/
+    transition: all 0.5s ease;
     /*border: red solid 1px;*/
 }
 #name{
@@ -95,12 +95,11 @@ p{
     background-color: rgba(213, 232, 202, 0);
     padding:8px 10px;
     border-radius: 100px;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease; /*transition for color change on hover*/
     display:flex;
     flex-direction: row;
     text-decoration: none;
 }
-
 #sidebar a.active{
     background-color: rgb(213, 232, 202);
     & .material-symbols-outlined{
@@ -123,6 +122,7 @@ p{
         'opsz' 24
     }
 }
+
 #sidebar.active{
     width:300px;
     & #name{
@@ -146,7 +146,7 @@ p{
     background-color: rgb(237, 239, 229);
     background-color:rgb(236, 229, 218 );
     width:100%; /*take up 9 values of width*/
-    transition: all 2s ease;
+    
     /*border: blue 1px solid;*/
 }
 
@@ -165,12 +165,11 @@ p{
 }
 #input-field{
     font-family: "Roboto", sans-serif; /*input fields need this to take effect*/
-    font-size: 13px;
+    font-size: 14px;
     text-align:center;
     border:0; /*remove the outline around input field*/
     border-radius:30px;
     width:50%;
-    padding: 12px;
     padding: 25px;
 }
 #add-button{
@@ -178,9 +177,9 @@ p{
     font-size: 13px;
     text-align:center;
     border:0; /*remove the outline around button*/
-    border-radius: 20px;
+    border-radius: 30px;
     width:90px;
-    padding: 6px;
+    padding:15px;
     background-color: rgb(255, 220, 173);
     transition: all 0.3s ease;
 }
@@ -254,6 +253,7 @@ ul li{
     white-space: nowrap; /*keeps text limited to one line*/
     overflow:hidden; /*make sure line does not go outside the div*/
     text-overflow: ellipsis; /*ends the line in ellipses*/
+    transition: all 0.3s ease;
 }
 ul li:hover{
     cursor: pointer;
