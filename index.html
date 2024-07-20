@@ -59,12 +59,43 @@
             
             <div class="TaskArea">
                 <div class="task-header">
-                    <div class="titleArea">
+
+                    <div class="leftTitleArea">
                         <div class ="title">To-Do List</div>
-                        <div id="dateArea"></div>
+                        <!--<div id="dateArea"></div>-->
+                        <div id="taskCountArea"></div>
                     </div>
+
+                    <div class="rightTitleArea">
+                        <button id="removeAll-button">
+                            <span class="material-symbols-outlined">delete</span>
+                        </button>
+                    </div>
+
                 </div>
-                <ul id="task-list"></ul>
+
+                <ul id="task-list">
+                    <li>The prototype task</li>
+
+                </ul>
+
+                <div id="deleteListOverlay">
+
+                    <div id="deleteAllCard">
+                        <div class="Overlay-icon">
+                            <span class="material-symbols-outlined">delete</span>
+                        </div>
+                        <div id="Overlay-title">Delete all tasks?</div>
+                        <p id="Overlay-text">All tasks will be removed from the to-do list.</p>
+                        <div class="Overlay-buttons">
+                            <button  class="Overlay-btn" id="Cancel-btn">Cancel</button>
+                            <button  class="Overlay-btn" id="Delete-btn">Delete</button>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+
             </div>
         </div>
 

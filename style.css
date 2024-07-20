@@ -18,7 +18,18 @@ html, body{
     font-weight: 400;
     font-style: normal;
 
+    user-select: none;  /*Makes the text un-highlightable for entire page */
+
     background-color: rgb(240, 244, 248);
+}
+
+/*placeholder text color*/
+::placeholder {
+    color: rgb(130, 117, 104);;
+    opacity: 1; /* Firefox */
+}
+::-ms-input-placeholder { /* Edge 12 -18 */
+    color:rgb(130, 117, 104);
 }
 
 /********************** Login Portion **********************/
@@ -81,7 +92,7 @@ p{
     background-color:rgb(236, 229, 218 );
     gap: 30px;
     padding-top: 50px;
-    width: 115px; /*width of sidebar is compact mode*/
+    width: 105px; /*width of sidebar is compact mode*/
     transition: all 0.5s ease;
     /*border: red solid 1px;*/
 }
@@ -92,6 +103,7 @@ p{
     margin-left:30px;
     margin-right:30px;
     color: black;
+    color:rgb(80, 69, 58);
     background-color: rgba(213, 232, 202, 0);
     padding:8px 10px;
     border-radius: 100px;
@@ -102,6 +114,7 @@ p{
 }
 #sidebar a.active{
     background-color: rgb(213, 232, 202);
+    color: black;
     & .material-symbols-outlined{
         font-variation-settings:
         'FILL' 1,
@@ -153,10 +166,10 @@ p{
 
 
 .inputArea{
-    margin-left: 25px;
+    margin-left: 0px;
     margin-right: 25px;
     padding-top:40px;
-    padding-bottom: 40px;
+    padding-bottom: 20px;
     display:flex;
     justify-content: flex-start;
     gap:10px; /*the gap betwwen the input and button*/
@@ -171,6 +184,7 @@ p{
     border-radius:30px;
     width:50%;
     padding: 25px;
+    background-color:rgb(252, 252, 252);
 }
 #add-button{
     font-family: "Roboto", sans-serif; /*input fields need this to take effect*/
@@ -199,7 +213,7 @@ p{
 
 .TaskArea{
     height:100%;
-    margin-left:25px;
+    margin-left:0px;
     margin-right:25px;
     margin-bottom: 20px;
     background-color: rgb(252, 252, 252);
@@ -208,24 +222,149 @@ p{
     /*border: rgb(250, 43, 253) 1px solid;*/
 }
 .task-header{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
     background-color: rgb(243, 245, 235);
     background-color: rgb(246, 244, 239);
     height:70px;
 }
-.titleArea{
+.leftTitleArea{
     display:flex;
     flex-direction: column;
     padding: 15px;
     /*border: red 1px solid;*/
 }
+.rightTitleArea{
+    /*border: rgb(119, 255, 0) 1px solid;*/
+}
+
+
 .title{
     font-weight: 400;
-    font-size: 22px;
-    padding-bottom: 4px;
+    font-size: 18px;
+    padding-top:4px;
+    padding-bottom: 6px;
 }
 #dateArea{
     font-size: 12px;
 }
+#taskCountArea{
+    font-size: 12px;
+    color: rgb(130, 117, 104);
+}
+
+#removeAll-button{
+    margin-top: 15px;
+    margin-right:14px;
+    padding-top:10px;
+    padding-bottom:7px;
+    padding-left:12px;
+    padding-right:12px;
+    background-color: rgb(252, 252, 252);
+    color: rgb(130, 117, 104);
+    border-radius: 14px;
+    scale: 0.8;
+    border:none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+#removeAll-button:hover{
+    background-color: rgb(246, 208, 162);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+#removeAll-button:active{
+    background-color:rgb(227, 193, 150);
+}
+
+#deleteListOverlay{
+    position:fixed;
+    display:none; /*Hidden by default*/
+    width: 100%;
+    height:100%;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color:rgba(0,0,0,0.5); 
+    z-index:2;
+}
+#deleteAllCard{
+    max-width:280px;
+    max-height:200px;
+    background-color:rgb(252, 252, 252);
+    border-radius: 20px;
+    
+
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin:auto;
+    z-index:3;
+}
+.Overlay-icon{
+    margin-top: 18px;
+    text-align: center;
+    scale:0.85;
+    color: rgb(130, 117, 104);
+}
+#Overlay-title{
+    /*border: red 1px solid;*/
+    text-align: center;
+    font-size: 19px;
+    font-weight: 400;
+    margin-top:13px;
+}
+#Overlay-text{
+    margin-top:15px;
+    margin-left:25px;
+    margin-right:25px;
+    margin-bottom:35px;
+    font-size: 12px;
+    font-weight:300;
+}
+.Overlay-buttons{
+    display:flex;
+    flex-direction:row;
+    justify-content: flex-end;
+    gap:12px;
+    /*border:red 1px solid;*/
+    margin-right:20px;
+    
+}
+.Overlay-btn{
+    border: none;
+    font-size: 12px;
+    padding: 10px 19px;
+    border-radius:20px;
+    background-color:rgb(252, 252, 252);
+    color: rgb(130, 117, 104);
+
+}
+.Overlay-btn:hover{
+    background-color: rgb(246, 208, 162);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    cursor: pointer;
+}
+
+.Overlay-btn:active{
+    background-color:rgb(227, 193, 150);
+}
+#Delete-btn{
+    background-color: rgb(255, 226, 188);
+}
+#Delete-btn:hover{
+    background-color: rgb(246, 208, 162);
+}
+#Delete-btn:active{
+    background-color:rgb(227, 193, 150);
+}
+
+
+
 ul{
     list-style-type: none;  /*Removes the dot at begining of a task*/
     display:flex; /*list of tasks will use flexbox*/
@@ -238,7 +377,7 @@ ul{
 ul li{
     background-color: rgb(255, 255, 255);  /*color of a task element*/
     background-color: rgb(242, 239, 232);
-    /box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2); /*shadow around a task element*/
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2); /*shadow around a task element*/
     padding: 15px;  /*padding inside a task element*/
     border-radius: 8px; /*radius of a task element*/
     height: 20px; /*height of a task element*/
@@ -258,6 +397,7 @@ ul li{
 ul li:hover{
     cursor: pointer;
     background-color: rgb(232, 229, 222);
+    background-color: rgb(255, 221, 178);
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 

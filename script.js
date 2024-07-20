@@ -24,15 +24,36 @@ const inputFieldEl = document.getElementById("input-field");
 const addBtnEl = document.getElementById("add-button");
 const taskListEL = document.getElementById("task-list");
 const dateAreaEl = document.getElementById("dateArea");
+const taskCountEl = document.getElementById("taskCountArea");
 
 const menuBtnEl = document.getElementById("menu");
 const sidebarEl = document.getElementById("sidebar");
+const trashBtnEl = document.getElementById("removeAll-button"); /*Button to remove all entries*/
+const darkAreaEl = document.getElementById("deleteListOverlay");
+const deleteBtnEl = document.getElementById("Delete-btn");
+
+trashBtnEl.onclick = function(){
+    on();
+}
+
+//if you click on anything other than delete it will cancel
+//Not ideal
+//ideally clicking on that white card should not do anything
+darkAreaEl.onclick = function(){
+    off();
+}
+
+deleteBtnEl.onclick = function(){
+    remove(ref(database, `tasks`));
+}
 
 menuBtnEl.onclick = function(){
     sidebarEl.classList.toggle("active")
 }
 
-todayDate(); //Show current date on page load
+/*todayDate(); //Show current date on page load*/
+
+let taskCount = 0;
 
 
 //this function runs everytime there is an edit to the database
@@ -53,11 +74,15 @@ onValue(tasksInDB, function(snapshot){
             //So we can check the ID and task sepreately later on ex. currentItem[0]
 
             appendTaskToTaskListEl(currentItem);
+            taskCount++;
         }
+        taskCounterFunc();
+
     }
     else{
         //In this case no snapshots exist so display no more tasks.
         taskListEL.innerHTML = "No more tasks. ";
+        taskCounterFunc();
     }
 
 })
@@ -123,6 +148,20 @@ function todayDate(){
     dateAreaEl.innerHTML = `<p>${day},  ${month} ${dateNum} ${year}</p>`;
 }
 
+function taskCounterFunc(){
+    taskCountEl.innerHTML = `<p>${taskCount} Tasks</p>`;
+    //reset the taskcount after it's added to html
+    taskCount = 0;
+}
+
+
+function on() {
+    document.getElementById("deleteListOverlay").style.display = "block";
+}
+  
+function off() {
+    document.getElementById("deleteListOverlay").style.display = "none";
+} 
 
 
 
