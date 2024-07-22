@@ -29,8 +29,8 @@ const taskCountEl = document.getElementById("taskCountArea");
 const menuBtnEl = document.getElementById("menu");
 const sidebarEl = document.getElementById("sidebar");
 const trashBtnEl = document.getElementById("removeAll-button"); /*Button to remove all entries*/
-const darkAreaEl = document.getElementById("deleteListOverlay");
-const deleteBtnEl = document.getElementById("Delete-btn");
+const darkAreaEl = document.getElementById("deleteListOverlay"); /*dark area when overlay happens*/
+const deleteBtnEl = document.getElementById("Delete-btn"); /*final delete button to delete the list*/
 
 trashBtnEl.onclick = function(){
     on();
@@ -149,7 +149,12 @@ function todayDate(){
 }
 
 function taskCounterFunc(){
-    taskCountEl.innerHTML = `<p>${taskCount} Tasks</p>`;
+    if(taskCount == 1){
+        taskCountEl.innerHTML = `<p>1 Task</p>`;
+    }
+    else{
+        taskCountEl.innerHTML = `<p>${taskCount} Tasks</p>`;
+    }
     //reset the taskcount after it's added to html
     taskCount = 0;
 }

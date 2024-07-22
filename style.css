@@ -89,6 +89,7 @@ p{
     display:flex;
     flex-direction: column;
     flex-wrap:nowrap;
+    
     background-color:rgb(236, 229, 218 );
     gap: 30px;
     padding-top: 50px;
@@ -98,6 +99,7 @@ p{
 }
 #name{
     display: none;
+    margin-left:15px; /*Space betwwen icon and text on the extended side menu*/
 }
 #sidebar a{
     margin-left:30px;
@@ -111,6 +113,10 @@ p{
     display:flex;
     flex-direction: row;
     text-decoration: none;
+    /*border: rgb(255, 0, 0) 1px solid;*/
+}
+#sidebar #name{
+    /*border: blue 1px solid;*/
 }
 #sidebar a.active{
     background-color: rgb(213, 232, 202);
@@ -148,7 +154,7 @@ p{
   'FILL' 0,
   'wght' 400,
   'GRAD' 0,
-  'opsz' 24
+  'opsz' 24;
 }
 
 
