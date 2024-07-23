@@ -21,9 +21,8 @@ const tasksInDB = ref(database, "tasks");
 
 //HTML Elements
 const inputFieldEl = document.getElementById("input-field");
-const addBtnEl = document.getElementById("add-button");
+const addBtnEl = document.getElementById("addTaskBtn");
 const taskListEL = document.getElementById("task-list");
-const dateAreaEl = document.getElementById("dateArea");
 const taskCountEl = document.getElementById("taskCountArea");
 
 const menuBtnEl = document.getElementById("menu");
@@ -97,8 +96,11 @@ function handleNewTask(){
     if(inputValue == ""){
         return;
     }
+    //Temporary
+    let date = todayDate();
     //push the input value to the database
-    push(tasksInDB, inputValue);
+    /*push(tasksInDB, inputValue);*/
+    push(tasksInDB, [inputValue, date]);
     //clear input field when add button is pressed
     clearInputFieldEl();
 }
@@ -109,12 +111,21 @@ function clearInputFieldEl(){
 }
 
 //function to add new task to the page
-function appendTaskToTaskListEl(someItem){
-    let itemID = someItem[0];
-    let itemValue = someItem[1]; 
+function appendTaskToTaskListEl(item){
+    let itemID = item[0];
+    let itemValue = item[1]; /*ItemValue will be an array, [the task, date] */
 
     let newEl = document.createElement("li"); //Create an "li" element
-    newEl.textContent = itemValue;  //Put the value argument inside the "li" element
+    /*newEl.textContent = itemValue;  //Put the value argument inside the "li" element*/
+    newEl.innerHTML += `<div id="left-portion">
+                            <div id="title-portion">${itemValue[0]}</div>
+                            <div id="date-portion">${itemValue[1]}</div>
+                        </div>
+                        <div id="right-portion">
+                            <button id="options-btn">
+                                <span class="material-symbols-outlined">more_vert</span>
+                            </button>
+                        </div>`;
 
     //Event listener that checks if any element was clicked on and the removes it
     newEl.addEventListener("click", function(){
@@ -145,7 +156,7 @@ function todayDate(){
     let dateNum = d.getDate();
     let year = d.getFullYear();
 
-    dateAreaEl.innerHTML = `<p>${day},  ${month} ${dateNum} ${year}</p>`;
+    return `${day},  ${month} ${dateNum} ${year}`;
 }
 
 function taskCounterFunc(){

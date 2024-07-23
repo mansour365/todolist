@@ -1,4 +1,3 @@
-
 html, body{
     margin:0;
     padding:0;
@@ -13,14 +12,11 @@ html, body{
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 
-    /*default font for entire page*/
-    font-family: "Roboto", sans-serif;
+    font-family: "Roboto", sans-serif; /*default font for page*/
     font-weight: 400;
     font-style: normal;
-
     user-select: none;  /*Makes the text un-highlightable for entire page */
-
-    background-color: rgb(240, 244, 248);
+    /*background-color: rgb(240, 244, 248);*/
 }
 
 /*placeholder text color*/
@@ -32,124 +28,84 @@ html, body{
     color:rgb(130, 117, 104);
 }
 
-/********************** Login Portion **********************/
-h1{
-    font-weight: 500;
-    border: blue 1px solid;
-}
 p{
     margin:auto;
 }
-#login-title{
-    margin: auto;
-}
-#loginCard{
-    width: 300px;
-    height: 300px;
-    background-color: rgb(255, 255, 255);
-    margin: auto;
-    padding: 20px;
-    border-radius: 2%;
-    /*display:flex;*/
-    display:none;
-    flex-direction: column;
-}
-/*Hidden sign up button*/
-#sign-up{
-    display:none;
-}
-#password2{
-    display:none;
-}
-#cancel-create-account{
-    display:none;
-}
 
 /****************** To DO List Portion *********************/
-#navbar-area{
-    /*display:none;*/
-    display:flex;  /*The entire navbar is a flexbox container*/
-    height: 53px; /*height of navbar is 53px (This height is fixed)*/
-    flex-direction: row; /*items in this flexbox are stacked left ot right*/
-    flex-wrap: nowrap; /*Make sure no wrapping occurs*/
-    background-color: rgb(213, 176, 150);
-    border-bottom: solid 1px rgb(217, 217, 217);
-}
 
-/*2 sections are sidebar and main area*/
-.two-section{
-    display:flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    flex-grow:1;
-    justify-content: flex-start;
+.two-section{ /*Website split in 2 sections (sidebar and mainArea)*/
+    display:flex; /*two parts of website are split using flexbox*/
+    flex-direction: row;  /*two sections are in side by side formation (sidebar and mainArea)*/
+    flex-wrap: nowrap; /*never wrap these two section*/
+    flex-grow:1; /*both sections extend to bottom of page*/
+    justify-content: flex-start; /*flex elements get packed towards the start (first sidebar, then mainarea)*/
 }
 
 #sidebar{
-    display:flex;
-    flex-direction: column;
-    flex-wrap:nowrap;
-    
-    background-color:rgb(236, 229, 218 );
-    gap: 30px;
-    padding-top: 50px;
-    width: 105px; /*width of sidebar is compact mode*/
-    transition: all 0.5s ease;
+    display:flex;  /*sidebar uses flexbox to organize links*/
+    flex-direction: column; /*flex box is configured to stack elements (links)*/
+    flex-wrap:nowrap; /*no wrap on this flex box*/
+    gap: 30px; /*flexbox gap*/
+    width: 105px; /*width of sidebar, required for transition to work*/
+    background-color:rgb(236, 229, 218); /*background color of sidebar*/
+    padding-top: 50px; /*padding on top of sidebar*/
+    transition: all 0.5s ease; /*transition for sidebar expansion*/
     /*border: red solid 1px;*/
 }
-#name{
-    display: none;
-    margin-left:15px; /*Space betwwen icon and text on the extended side menu*/
+
+#sidebar-linkName{
+    display: none; /*when not expanded the link name will not show*/
+    margin-left:15px; /*Space betwwen icon and text on an extended side menu*/
 }
-#sidebar a{
-    margin-left:30px;
-    margin-right:30px;
-    color: black;
-    color:rgb(80, 69, 58);
-    background-color: rgba(213, 232, 202, 0);
-    padding:8px 10px;
-    border-radius: 100px;
+
+#sidebar.active{ /*When the sidebar is expanded*/
+    width:300px; /*width of expanded sidebar*/
+    & #sidebar-linkName{   /*nested element to chain css actions*/
+        display:block;     /*display the link names when sidebar is expanded*/
+    }
+}
+
+#sidebar a{  /* A sidebar button (expanded or contracted) */
+    display:flex; /*button uses flexbox to organize the icon and link name*/
+    flex-direction: row; /*icon and link name will be side by side*/
+
+    margin-left:30px; /*margin to the left of a sidebar button*/
+    margin-right:30px; /*margin to the right of a sidebar button*/
+    padding:8px 10px; /*padding inside a sidebar button*/
+    border-radius: 100px; /*make the button completely round*/
+    color:rgb(80, 69, 58); /*default color of sidebar button (symbol or name)*/
+    text-decoration: none; /*removes the underline associated with links*/
     transition: all 0.3s ease; /*transition for color change on hover*/
-    display:flex;
-    flex-direction: row;
-    text-decoration: none;
+    /*background-color: rgba(255, 255, 255, 0); /*transluscent background color around button, used as tool for testing*/
     /*border: rgb(255, 0, 0) 1px solid;*/
 }
-#sidebar #name{
-    /*border: blue 1px solid;*/
-}
-#sidebar a.active{
-    background-color: rgb(213, 232, 202);
-    color: black;
-    & .material-symbols-outlined{
+
+#sidebar a.active{  /*when a sidebar button is associated with the current page*/
+    background-color: rgb(213, 232, 202); /*active button has light green background*/
+    color: black; /*active button is black*/
+    & .material-symbols-outlined{  
         font-variation-settings:
-        'FILL' 1,
+        'FILL' 1,  /*active button has its icon filled*/
         'wght' 400,
         'GRAD' 0,
         'opsz' 24
     }
 }
-#sidebar a:hover{
-    background-color: rgb(185, 201, 176);
-    transform: scale(1.01);
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+#sidebar a:hover{  /*when you hover over a sidebar button*/
+    background-color: rgb(185, 201, 176); /*background color of a button that been hovered over*/
+    transform: scale(1.01); /*scale of sidebar button when hovered over*/
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; /*shadow of button*/
     & .material-symbols-outlined{
         font-variation-settings:
-        'FILL' 1,
+        'FILL' 1,      /*Icon is fiiled when button is hovered over*/
         'wght' 400,
         'GRAD' 0,
         'opsz' 24
     }
 }
 
-#sidebar.active{
-    width:300px;
-    & #name{
-        display:block;
-    }
-}
-
-.material-symbols-outlined {
+.material-symbols-outlined {   /*default google icon css*/
   font-variation-settings:
   'FILL' 0,
   'wght' 400,
@@ -158,62 +114,59 @@ p{
 }
 
 
+
 #mainarea{    
     display:flex; /*estblish that this container uses flexbox*/
     flex-direction: column; /*items are layout in row direction*/
     flex-wrap: nowrap; /*all items will appear on one line (no wrapping)*/
-    background-color: rgb(237, 239, 229);
-    background-color:rgb(236, 229, 218 );
-    width:100%; /*take up 9 values of width*/
-    
+    background-color:rgb(236, 229, 218 ); /*background color of main area section*/
+    width:100%; /*width of main area*/
+    overflow: hidden; /*important, otherwise mainArea can go off screen with big task names*/
     /*border: blue 1px solid;*/
 }
+.inputArea{  /*Area that contains both the "input field" and the "add task" button*/
+    display:flex; /*uses flexbox to organise the input field and the add task button*/
+    justify-content: flex-start; /*flex elements get packed towards the start (inputfield, then addtask btn)*/
+    gap:10px; /*the gap betwwen the input and button*/
 
-
-
-.inputArea{
-    margin-left: 0px;
-    margin-right: 25px;
+    margin-left: 0px; /*0 margin to left of this area*/
+    margin-right: 25px; /*keeps this area at the same width of the task area (may not be needed)*/
     padding-top:40px;
     padding-bottom: 20px;
-    display:flex;
-    justify-content: flex-start;
-    gap:10px; /*the gap betwwen the input and button*/
     height: 45px;
     /*border: solid red 1px;*/
 }
 #input-field{
     font-family: "Roboto", sans-serif; /*input fields need this to take effect*/
-    font-size: 14px;
-    text-align:center;
+    font-size: 14px; /*font size of input field*/
+    text-align:center; /*alignment of text in input field*/
     border:0; /*remove the outline around input field*/
-    border-radius:30px;
-    width:50%;
-    padding: 25px;
-    background-color:rgb(252, 252, 252);
+    border-radius:30px; /*border radius of input field*/
+    width:50%; /*width of input field*/
+    padding: 25px; /*padding of input field*/
+    background-color:rgb(252, 252, 252); /*background color of input field*/
 }
-#add-button{
-    font-family: "Roboto", sans-serif; /*input fields need this to take effect*/
-    font-size: 13px;
-    text-align:center;
-    border:0; /*remove the outline around button*/
-    border-radius: 30px;
-    width:90px;
-    padding:15px;
-    background-color: rgb(255, 220, 173);
-    transition: all 0.3s ease;
+#addTaskBtn{
+    font-family: "Roboto", sans-serif; /*font of addTaskBtn*/
+    font-size: 13px; /*font size of addTaskBtn*/
+    text-align:center; /*text alignment of addTaskBtn*/
+    border:0; /*remove the outline around the button*/
+    border-radius: 30px; /*border radius of addTaskBtn*/
+    width:90px; /*width of addTaskBtn*/
+    padding:15px; /*padding of addTaskBtn*/
+    background-color: rgb(255, 220, 173); /*default color of addTaskBtn*/
+    transition: all 0.3s ease; /*transition effect of addTaskBtn*/
 }
-#add-button:hover{
-    cursor: pointer;
-    background-color: rgb(246, 208, 162);
-    transform: scale(1.01);
+#addTaskBtn:hover{ /*effect when hover over button*/
+    cursor: pointer; /*change pointer on hover of addTaskBtn*/
+    background-color: rgb(246, 208, 162); /*change background color on hover of addTaskBtn*/
+    transform: scale(1.01); /*change scale on hover of addTaskBtn*/
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
-#add-button:active{
-    background-color:rgb(227, 193, 150);
-    transform:scale(1);
+#addTaskBtn:active{  /*brief effect when click on button*/
+    background-color:rgb(227, 193, 150); /*brief button color when click on button*/
+    transform:scale(1); /*brief scale change of btn when click on btn*/
 }
-
 
 
 
@@ -231,7 +184,6 @@ p{
     display:flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: rgb(243, 245, 235);
     background-color: rgb(246, 244, 239);
     height:70px;
 }
@@ -252,9 +204,7 @@ p{
     padding-top:4px;
     padding-bottom: 6px;
 }
-#dateArea{
-    font-size: 12px;
-}
+
 #taskCountArea{
     font-size: 12px;
     color: rgb(130, 117, 104);
@@ -263,10 +213,12 @@ p{
 #removeAll-button{
     margin-top: 15px;
     margin-right:14px;
-    padding-top:10px;
-    padding-bottom:7px;
+
     padding-left:12px;
     padding-right:12px;
+    padding-top:10px;
+    padding-bottom:7px;
+
     background-color: rgb(252, 252, 252);
     color: rgb(130, 117, 104);
     border-radius: 14px;
@@ -374,38 +326,87 @@ p{
 ul{
     list-style-type: none;  /*Removes the dot at begining of a task*/
     display:flex; /*list of tasks will use flexbox*/
-    flex-wrap: wrap; /*makes sure the flexbox elements will wrap*/
-    justify-content: center;
+    flex-direction: column;
+    flex-wrap: nowrap; /*makes sure the flexbox elements will wrap*/
     gap: 20px; /*gap between each task element*/
     padding-left:0; /*Needed because a list will create an unessesary space on the left*/
     /*border: solid red 1px;*/
 }
 ul li{
-    background-color: rgb(255, 255, 255);  /*color of a task element*/
+    display:flex;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    justify-content: flex-end;
+
     background-color: rgb(242, 239, 232);
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2); /*shadow around a task element*/
-    padding: 15px;  /*padding inside a task element*/
     border-radius: 8px; /*radius of a task element*/
-    height: 20px; /*height of a task element*/
-    width:100%;
+    height:60px;
     margin-left:20px;
     margin-right:20px;
-    /*min-width: 100px; /*minumum width of a task element*/
-    flex-grow:1; /*makes each task fill any remainding space beside*/
-    text-align: left; /*align text to center of task*/
 
-    /*this three needed to keep one line and end in ellipsis*/
-    white-space: nowrap; /*keeps text limited to one line*/
     overflow:hidden; /*make sure line does not go outside the div*/
-    text-overflow: ellipsis; /*ends the line in ellipses*/
     transition: all 0.3s ease;
+    /*border: blue solid 1px;*/
 }
 ul li:hover{
     cursor: pointer;
-    background-color: rgb(232, 229, 222);
     background-color: rgb(255, 221, 178);
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
+
+#left-portion{
+    display:flex;
+    flex-direction:column;
+
+    padding:9px;
+    width:100%;
+    overflow:hidden;
+    /*border: red 1px solid;*/
+}
+#title-portion{
+    font-weight:400;
+    font-size:18px;
+
+    /*this three needed to keep one line and end in ellipsis*/
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;
+}
+#date-portion{
+    font-size:12px;
+    color:rgb(130, 117, 104);
+    
+}
+
+#right-portion{
+    min-width:70px;
+    /*border: green 1px solid;*/
+}
+#options-btn{
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:8px;
+    padding-bottom:8px;
+
+    margin-top: 7px;
+    margin-left:12px;
+
+    background-color: rgb(252, 252, 252);
+    color: rgb(130, 117, 104);
+    border-radius: 14px;
+    scale: 0.8;
+    border:none;
+    cursor:pointer;
+    transition: all 0.3s ease; /*check if needed*/
+}
+
+
+
+
+
+
+
 
 .user-details-container{
     background-color: rgb(227, 187, 187);
@@ -413,6 +414,40 @@ ul li:hover{
 
 
 
+
+
+
+
+/*----------Login Portion-----------*/
+
+h1{
+    font-weight: 500;
+    border: blue 1px solid;
+}
+#login-title{
+    margin: auto;
+}
+#loginCard{
+    width: 300px;
+    height: 300px;
+    background-color: rgb(255, 255, 255);
+    margin: auto;
+    padding: 20px;
+    border-radius: 2%;
+    /*display:flex;*/
+    display:none;
+    flex-direction: column;
+}
+/*Hidden sign up button*/
+#sign-up{
+    display:none;
+}
+#password2{
+    display:none;
+}
+#cancel-create-account{
+    display:none;
+}
 
 
 
