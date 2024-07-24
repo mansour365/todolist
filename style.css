@@ -169,8 +169,10 @@ p{
 }
 
 
-
-.TaskArea{
+/*---------------to do list card--------------*/
+#TaskArea{
+    display:flex;
+    flex-direction:column;
     height:100%;
     margin-left:0px;
     margin-right:25px;
@@ -178,19 +180,35 @@ p{
     background-color: rgb(252, 252, 252);
     border-radius: 15px;
     overflow: hidden;
-    /*border: rgb(250, 43, 253) 1px solid;*/
+
+    /*border: rgb(43, 253, 85) 1px solid;*/
 }
-.task-header{
+#task-header{
     display:flex;
     flex-direction: row;
     justify-content: space-between;
     background-color: rgb(246, 244, 239);
-    height:70px;
+    height:78px;
+    /*border:red 1px solid;*/
 }
-.leftTitleArea{
+#action-zone{
+    height:100%;
+    /*border:red solid 1px;*/
+}
+#account-zone{
+    display:none; /*hidden by defult*/
+} 
+#settings-zone{
+    display:none; /*hidden by defult*/
+}
+#about-zone{
+    display:none; /*hidden by defult*/
+}
+
+#leftTitleArea{
     display:flex;
     flex-direction: column;
-    padding: 15px;
+    /*padding: 15px;*/
     /*border: red 1px solid;*/
 }
 .rightTitleArea{
@@ -198,16 +216,21 @@ p{
 }
 
 
-.title{
+#title{
+    margin-top:19px;
+    margin-bottom: 6px;
+    margin-left:15px;
     font-weight: 400;
     font-size: 18px;
-    padding-top:4px;
-    padding-bottom: 6px;
+    /*border: red 1px solid;*/
 }
 
 #taskCountArea{
+    display:block;
     font-size: 12px;
+    margin-left:15px;
     color: rgb(130, 117, 104);
+    /*border: green 1px solid;*/
 }
 
 #removeAll-button{
@@ -253,7 +276,6 @@ p{
     background-color:rgb(252, 252, 252);
     border-radius: 20px;
     
-
     position: absolute;
     top:0;
     bottom: 0;
@@ -291,7 +313,6 @@ p{
     gap:12px;
     /*border:red 1px solid;*/
     margin-right:20px;
-    
 }
 .Overlay-btn{
     border: none;
@@ -358,8 +379,6 @@ ul li:hover{
 #left-portion{
     display:flex;
     flex-direction:column;
-
-    padding:9px;
     width:100%;
     overflow:hidden;
     /*border: red 1px solid;*/
@@ -367,16 +386,21 @@ ul li:hover{
 #title-portion{
     font-weight:400;
     font-size:18px;
+    margin-top: 10px;
+    margin-left: 14px;
 
     /*this three needed to keep one line and end in ellipsis*/
     white-space: nowrap;
     overflow:hidden;
     text-overflow: ellipsis;
+    /*border: 1px green solid;*/
 }
 #date-portion{
+    margin-top: 7px;
+    margin-left: 14px;
     font-size:12px;
     color:rgb(130, 117, 104);
-    
+    /*border:red 1px solid;*/
 }
 
 #right-portion{
@@ -389,8 +413,8 @@ ul li:hover{
     padding-top:8px;
     padding-bottom:8px;
 
-    margin-top: 7px;
-    margin-left:12px;
+    margin-top: 8px;
+    margin-left:15px;
 
     background-color: rgb(252, 252, 252);
     color: rgb(130, 117, 104);
@@ -401,8 +425,11 @@ ul li:hover{
     transition: all 0.3s ease; /*check if needed*/
 }
 
+/*---------------Account card--------------*/
+#AccountArea{
+    display:block;
 
-
+}
 
 
 

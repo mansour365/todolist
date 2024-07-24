@@ -31,6 +31,11 @@ const trashBtnEl = document.getElementById("removeAll-button"); /*Button to remo
 const darkAreaEl = document.getElementById("deleteListOverlay"); /*dark area when overlay happens*/
 const deleteBtnEl = document.getElementById("Delete-btn"); /*final delete button to delete the list*/
 
+const homeBtnEl = document.getElementById("home");
+const accountBtnEl = document.getElementById("account");
+const settingsBtnEl = document.getElementById("settings");
+const aboutBtnEl = document.getElementById("about");
+
 trashBtnEl.onclick = function(){
     on();
 }
@@ -49,6 +54,105 @@ deleteBtnEl.onclick = function(){
 menuBtnEl.onclick = function(){
     sidebarEl.classList.toggle("active")
 }
+
+homeBtnEl.onclick = function(){
+    //top bar
+    document.getElementById("title").innerHTML = "To-Do List";
+    document.getElementById("taskCountArea").style.display="block";
+    document.getElementById("removeAll-button").style.display="block";
+    //action zone
+    document.getElementById("account-zone").style.display="none";
+    document.getElementById("settings-zone").style.display="none";
+    document.getElementById("about-zone").style.display="none";
+    document.getElementById("task-list").style.display="flex";
+    //button color
+    if(homeBtnEl.classList == "active")
+    {
+        return; //do nothing
+    }
+    else{
+        homeBtnEl.classList.toggle("active");
+        aboutBtnEl.classList.remove("active");
+        settingsBtnEl.classList.remove("active");
+        accountBtnEl.classList.remove("active");
+    }
+
+
+}
+
+accountBtnEl.onclick = function(){
+    //top bar
+    document.getElementById("title").innerHTML = "Account";
+    document.getElementById("taskCountArea").style.display="none";
+    document.getElementById("removeAll-button").style.display="none";
+    //action zone
+    document.getElementById("task-list").style.display="none";
+    document.getElementById("settings-zone").style.display="none";
+    document.getElementById("about-zone").style.display="none";
+    document.getElementById("account-zone").style.display="block";
+    //button color
+    if(accountBtnEl.classList == "active")
+    {
+        return; //do nothing
+    }
+    else{
+        accountBtnEl.classList.toggle("active");
+        aboutBtnEl.classList.remove("active");
+        settingsBtnEl.classList.remove("active");
+        homeBtnEl.classList.remove("active");
+    }
+    
+}
+
+settingsBtnEl.onclick = function(){
+    //top bar
+    document.getElementById("title").innerHTML = "Settings";
+    document.getElementById("taskCountArea").style.display="none";
+    document.getElementById("removeAll-button").style.display="none";
+    //action zone
+    document.getElementById("task-list").style.display="none";
+    document.getElementById("account-zone").style.display="none";
+    document.getElementById("about-zone").style.display="none";
+    document.getElementById("settings-zone").style.display="block";
+    //button color
+    if(settingsBtnEl.classList == "active")
+    {
+        return; //do nothing
+    }
+    else{
+        settingsBtnEl.classList.toggle("active");
+        aboutBtnEl.classList.remove("active");
+        homeBtnEl.classList.remove("active");
+        accountBtnEl.classList.remove("active");
+    }
+
+    
+}
+
+aboutBtnEl.onclick = function(){
+    //top bar
+    document.getElementById("title").innerHTML = "About";
+    document.getElementById("taskCountArea").style.display="none";
+    document.getElementById("removeAll-button").style.display="none";
+    //action zone
+    document.getElementById("task-list").style.display="none";
+    document.getElementById("account-zone").style.display="none";
+    document.getElementById("settings-zone").style.display="none";
+    document.getElementById("about-zone").style.display="block";
+    //button color
+    if(aboutBtnEl.classList == "active")
+    {
+        return; //do nothing
+    }
+    else{
+        aboutBtnEl.classList.toggle("active");
+        homeBtnEl.classList.remove("active");
+        accountBtnEl.classList.remove("active");
+        settingsBtnEl.classList.remove("active");
+    }
+}
+
+
 
 /*todayDate(); //Show current date on page load*/
 
@@ -76,7 +180,6 @@ onValue(tasksInDB, function(snapshot){
             taskCount++;
         }
         taskCounterFunc();
-
     }
     else{
         //In this case no snapshots exist so display no more tasks.

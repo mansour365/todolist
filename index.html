@@ -30,19 +30,19 @@
             <a href="#menu" id="menu">
                 <span class="material-symbols-outlined">menu</span>
             </a>
-            <a class="active" href="#home">
+            <a class="active" href="#home" id="home">
                 <span class="material-symbols-outlined">home</span>
                 <p id="sidebar-linkName">Home</p>
             </a>
-            <a href="#account">
+            <a href="#account" id="account">
                 <span class="material-symbols-outlined">person</span>
                 <p id="sidebar-linkName">Account</p>
             </a>
-            <a href="#settings">
+            <a href="#settings" id="settings">
                 <span class="material-symbols-outlined">settings</span>
                 <p id="sidebar-linkName">Settings</p>
             </a>
-            <a href="#about">
+            <a href="#about" id="about">
                 <span class="material-symbols-outlined">info</span>
                 <p id="sidebar-linkName">About</p>
             </a>
@@ -55,11 +55,11 @@
                 <button id="addTaskBtn">Add Task</button>
             </div>
             
-            <div class="TaskArea">
-                <div class="task-header">
+            <div id="TaskArea">
+                <div id="task-header">
 
-                    <div class="leftTitleArea">
-                        <div class ="title">To-Do List</div>
+                    <div id="leftTitleArea">
+                        <div id ="title">To-Do List</div>
                         <!--<div id="dateArea"></div>-->
                         <div id="taskCountArea"></div>
                     </div>
@@ -72,10 +72,23 @@
 
                 </div>
 
-                <ul id="task-list">
-                    <li>The prototype task</li>
+                <div id="action-zone">
+                    <ul id="task-list">
 
-                </ul>
+                    </ul>
+                    <div id="account-zone">
+                        <p>Last Login: </p>
+                        <p>Delete Account - Warning cannot undo</p>
+                    </div>
+                    <div id="settings-zone">
+                        <p>Settings page</p>
+                    </div>
+                    <div id="about-zone">
+                        <p>About this website</p>
+                    </div>
+                </div>
+
+                
 
                 <div id="deleteListOverlay">
 
