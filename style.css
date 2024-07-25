@@ -1,3 +1,23 @@
+/*CSS Variables*/
+:root{
+    --backColor: rgb(232, 241, 250);
+    --taskColor:rgb(241, 246, 252);
+    --headerColor:rgb(246, 248, 252);
+    --taskBackColor:rgb(255, 251, 254);
+    --highlightColor:rgb(210, 228, 251);
+    --addTaskColor:rgb(255, 194, 130);
+    --smallBtnColor:rgb(255, 255, 255);
+
+    /*Dark mode colors*/
+    --backColorDark: rgb(233, 241, 250);
+    --taskColorDark:rgb(241, 246, 252);
+    --headerColorDark:rgb(241, 246, 252);
+    --taskBackColorDark:rgb(255, 251, 254);
+    --highlightColorDark:rgb(189, 231, 253);
+    --addTaskColorDark:rgb(255, 194, 130);
+    --smallBtnColorDark:rgb(255, 255, 255);
+}
+
 html, body{
     margin:0;
     padding:0;
@@ -49,7 +69,9 @@ p{
     gap: 30px; /*flexbox gap*/
     width: 105px; /*width of sidebar, required for transition to work*/
     background-color:rgb(236, 229, 218); /*background color of sidebar*/
-    padding-top: 50px; /*padding on top of sidebar*/
+    background-color:var(--backColor);
+
+    padding-top: 47px; /*padding on top of sidebar*/
     transition: all 0.5s ease; /*transition for sidebar expansion*/
     /*border: red solid 1px;*/
 }
@@ -83,6 +105,8 @@ p{
 
 #sidebar a.active{  /*when a sidebar button is associated with the current page*/
     background-color: rgb(213, 232, 202); /*active button has light green background*/
+    background-color:rgb(235, 220, 249);
+    background-color: var(--highlightColor);
     color: black; /*active button is black*/
     & .material-symbols-outlined{  
         font-variation-settings:
@@ -120,20 +144,26 @@ p{
     flex-direction: column; /*items are layout in row direction*/
     flex-wrap: nowrap; /*all items will appear on one line (no wrapping)*/
     background-color:rgb(236, 229, 218 ); /*background color of main area section*/
+    background-color: rgb(235, 230, 242);
+    background-color: var(--backColor);
     width:100%; /*width of main area*/
     overflow: hidden; /*important, otherwise mainArea can go off screen with big task names*/
     /*border: blue 1px solid;*/
 }
 .inputArea{  /*Area that contains both the "input field" and the "add task" button*/
     display:flex; /*uses flexbox to organise the input field and the add task button*/
-    justify-content: flex-start; /*flex elements get packed towards the start (inputfield, then addtask btn)*/
+    justify-content: flex-end; /*flex elements get packed towards the start (inputfield, then addtask btn)*/
     gap:10px; /*the gap betwwen the input and button*/
 
     margin-left: 0px; /*0 margin to left of this area*/
     margin-right: 25px; /*keeps this area at the same width of the task area (may not be needed)*/
     padding-top:40px;
-    padding-bottom: 20px;
+    /*padding-top:0;*/
+    padding-bottom: 15px;
+    /*padding-bottom:6px;*/
+
     height: 45px;
+    max-width:700px;
     /*border: solid red 1px;*/
 }
 #input-field{
@@ -142,9 +172,9 @@ p{
     text-align:center; /*alignment of text in input field*/
     border:0; /*remove the outline around input field*/
     border-radius:30px; /*border radius of input field*/
-    width:50%; /*width of input field*/
+    width:100%; /*width of input field*/
     padding: 25px; /*padding of input field*/
-    background-color:rgb(252, 252, 252); /*background color of input field*/
+    background-color:rgb(255, 255, 255); /*background color of input field*/
 }
 #addTaskBtn{
     font-family: "Roboto", sans-serif; /*font of addTaskBtn*/
@@ -152,9 +182,16 @@ p{
     text-align:center; /*text alignment of addTaskBtn*/
     border:0; /*remove the outline around the button*/
     border-radius: 30px; /*border radius of addTaskBtn*/
-    width:90px; /*width of addTaskBtn*/
-    padding:15px; /*padding of addTaskBtn*/
+    min-width:120px; /*width of addTaskBtn*/
+    /*padding:15px; /*padding of addTaskBtn*/
+    padding-top:18px;
+    padding-bottom:32px;
+    padding-left:30px;
+    padding-right:30px;
+    margin-bottom:0;
+    margin-right:0;
     background-color: rgb(255, 220, 173); /*default color of addTaskBtn*/
+    background-color: var(--addTaskColor);
     transition: all 0.3s ease; /*transition effect of addTaskBtn*/
 }
 #addTaskBtn:hover{ /*effect when hover over button*/
@@ -178,6 +215,9 @@ p{
     margin-right:25px;
     margin-bottom: 20px;
     background-color: rgb(252, 252, 252);
+    background-color: rgb(255, 251, 254);
+    background-color: var(--taskBackColor);
+
     border-radius: 15px;
     overflow: hidden;
 
@@ -188,6 +228,9 @@ p{
     flex-direction: row;
     justify-content: space-between;
     background-color: rgb(246, 244, 239);
+    background-color: rgb(247, 246, 250);
+    background-color: var(--headerColor);
+
     height:78px;
     /*border:red 1px solid;*/
 }
@@ -243,6 +286,8 @@ p{
     padding-bottom:7px;
 
     background-color: rgb(252, 252, 252);
+    background-color:var(--smallBtnColor);
+
     color: rgb(130, 117, 104);
     border-radius: 14px;
     scale: 0.8;
@@ -360,6 +405,8 @@ ul li{
     justify-content: flex-end;
 
     background-color: rgb(242, 239, 232);
+    background-color: var(--taskColor);
+
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2); /*shadow around a task element*/
     border-radius: 8px; /*radius of a task element*/
     height:60px;
@@ -373,6 +420,7 @@ ul li{
 ul li:hover{
     cursor: pointer;
     background-color: rgb(255, 221, 178);
+    background-color: var(--highlightColor);
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
@@ -417,6 +465,7 @@ ul li:hover{
     margin-left:15px;
 
     background-color: rgb(252, 252, 252);
+    background-color:var(--smallBtnColor);
     color: rgb(130, 117, 104);
     border-radius: 14px;
     scale: 0.8;
