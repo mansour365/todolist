@@ -1,21 +1,25 @@
 /*CSS Variables*/
 :root{
-    --backColor: rgb(232, 241, 250);
-    --taskColor:rgb(241, 246, 252);
-    --headerColor:rgb(246, 248, 252);
-    --taskBackColor:rgb(255, 251, 254);
-    --highlightColor:rgb(210, 228, 251);
-    --addTaskColor:rgb(255, 194, 130);
-    --smallBtnColor:rgb(255, 255, 255);
+    --backColor: rgb(233, 241, 250);
+    --taskColor:rgba(252, 252, 252, 0);
+    --headerColor:rgb(252, 252, 252);
+    --taskBackColor:rgb(252, 252, 252);
+    --highlightColor:rgb(189, 231, 253);
+    --addTaskColor:rgb(191, 238, 209);
+    --smallBtnColor:rgb(233, 241, 250);
+    --mainText:rgb(0,0,0);
+    --subText:rgb(59, 61, 58);
 
     /*Dark mode colors*/
-    --backColorDark: rgb(233, 241, 250);
-    --taskColorDark:rgb(241, 246, 252);
-    --headerColorDark:rgb(241, 246, 252);
-    --taskBackColorDark:rgb(255, 251, 254);
-    --highlightColorDark:rgb(189, 231, 253);
+    --backColorDark: rgb(35, 51, 58);
+    --taskColorDark:rgb(63, 72, 77);
+    --headerColorDark:rgb(63, 72, 77);
+    --taskBackColorDark:rgb(10, 10, 10);
+    --highlightColorDark:rgb(52, 73, 84);
     --addTaskColorDark:rgb(255, 194, 130);
     --smallBtnColorDark:rgb(255, 255, 255);
+    --mainTextDark:rgb(252, 252, 252);
+    --subTextDark:rgb(148, 148, 148);
 }
 
 html, body{
@@ -41,11 +45,11 @@ html, body{
 
 /*placeholder text color*/
 ::placeholder {
-    color: rgb(130, 117, 104);;
+    color: var(--subText);
     opacity: 1; /* Firefox */
 }
 ::-ms-input-placeholder { /* Edge 12 -18 */
-    color:rgb(130, 117, 104);
+    color:var(--subText);
 }
 
 p{
@@ -96,7 +100,7 @@ p{
     margin-right:30px; /*margin to the right of a sidebar button*/
     padding:8px 10px; /*padding inside a sidebar button*/
     border-radius: 100px; /*make the button completely round*/
-    color:rgb(80, 69, 58); /*default color of sidebar button (symbol or name)*/
+    color:var(--subText); /*default color of sidebar button (symbol or name)*/
     text-decoration: none; /*removes the underline associated with links*/
     transition: all 0.3s ease; /*transition for color change on hover*/
     /*background-color: rgba(255, 255, 255, 0); /*transluscent background color around button, used as tool for testing*/
@@ -156,7 +160,7 @@ p{
     gap:10px; /*the gap betwwen the input and button*/
 
     margin-left: 0px; /*0 margin to left of this area*/
-    margin-right: 25px; /*keeps this area at the same width of the task area (may not be needed)*/
+    margin-right: 24px; /*keeps this area at the same width of the task area (may not be needed)*/
     padding-top:40px;
     /*padding-top:0;*/
     padding-bottom: 15px;
@@ -260,25 +264,28 @@ p{
 
 
 #title{
-    margin-top:19px;
-    margin-bottom: 6px;
-    margin-left:15px;
-    font-weight: 400;
-    font-size: 18px;
+    font-weight: 500;
+    font-size: 22px;
+    letter-spacing: 0.03rem;;
+
+    margin-top:20px;
+    margin-bottom: 9px;
+    margin-left:20px;
+
     /*border: red 1px solid;*/
 }
 
 #taskCountArea{
     display:block;
     font-size: 12px;
-    margin-left:15px;
-    color: rgb(130, 117, 104);
+    margin-left:20px;
+    color: var(--subText);
     /*border: green 1px solid;*/
 }
 
 #removeAll-button{
-    margin-top: 15px;
-    margin-right:14px;
+    margin-top: 20px;
+    margin-right:20px;
 
     padding-left:12px;
     padding-right:12px;
@@ -288,7 +295,7 @@ p{
     background-color: rgb(252, 252, 252);
     background-color:var(--smallBtnColor);
 
-    color: rgb(130, 117, 104);
+    color: var(--subText);
     border-radius: 14px;
     scale: 0.8;
     border:none;
@@ -334,7 +341,7 @@ p{
     margin-top: 18px;
     text-align: center;
     scale:0.85;
-    color: rgb(130, 117, 104);
+    color: var(--subText);
 }
 #Overlay-title{
     /*border: red 1px solid;*/
@@ -365,7 +372,7 @@ p{
     padding: 10px 19px;
     border-radius:20px;
     background-color:rgb(252, 252, 252);
-    color: rgb(130, 117, 104);
+    color: var(--subText);
 
 }
 .Overlay-btn:hover{
@@ -394,9 +401,10 @@ ul{
     display:flex; /*list of tasks will use flexbox*/
     flex-direction: column;
     flex-wrap: nowrap; /*makes sure the flexbox elements will wrap*/
-    gap: 20px; /*gap between each task element*/
+    gap: 0px; /*gap between each task element*/
     padding-left:0; /*Needed because a list will create an unessesary space on the left*/
     /*border: solid red 1px;*/
+
 }
 ul li{
     display:flex;
@@ -404,19 +412,32 @@ ul li{
     flex-wrap:nowrap;
     justify-content: flex-end;
 
+    color: var(--mainText);
     background-color: rgb(242, 239, 232);
     background-color: var(--taskColor);
+    
 
-    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2); /*shadow around a task element*/
-    border-radius: 8px; /*radius of a task element*/
+    /*box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2); /*shadow around a task element*/
+    /*border-radius: 8px; /*radius of a task element*/
     height:60px;
-    margin-left:20px;
-    margin-right:20px;
+    margin-left:30px;
+    margin-right:30px;
+    padding-top:5px;
+    padding-bottom:10px;
 
     overflow:hidden; /*make sure line does not go outside the div*/
     transition: all 0.3s ease;
+    border-bottom: 1px rgba(0, 0, 139, 0.268) solid;
     /*border: blue solid 1px;*/
 }
+
+
+.list-element.active{
+    background-color: var(--taskColorDark);
+
+}
+    
+
 ul li:hover{
     cursor: pointer;
     background-color: rgb(255, 221, 178);
@@ -432,10 +453,10 @@ ul li:hover{
     /*border: red 1px solid;*/
 }
 #title-portion{
-    font-weight:400;
+    font-weight:300;
     font-size:18px;
     margin-top: 10px;
-    margin-left: 14px;
+    margin-left: 0px;
 
     /*this three needed to keep one line and end in ellipsis*/
     white-space: nowrap;
@@ -445,9 +466,9 @@ ul li:hover{
 }
 #date-portion{
     margin-top: 7px;
-    margin-left: 14px;
+    margin-left: 0px;
     font-size:12px;
-    color:rgb(130, 117, 104);
+    color:var(--subText);
     /*border:red 1px solid;*/
 }
 
@@ -461,12 +482,12 @@ ul li:hover{
     padding-top:8px;
     padding-bottom:8px;
 
-    margin-top: 8px;
+    margin-top: 11px;
     margin-left:15px;
 
     background-color: rgb(252, 252, 252);
     background-color:var(--smallBtnColor);
-    color: rgb(130, 117, 104);
+    color: var(--subText);
     border-radius: 14px;
     scale: 0.8;
     border:none;

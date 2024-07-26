@@ -35,6 +35,7 @@ const homeBtnEl = document.getElementById("home");
 const accountBtnEl = document.getElementById("account");
 const settingsBtnEl = document.getElementById("settings");
 const aboutBtnEl = document.getElementById("about");
+const listEl = document.getElementsByClassName("list-element");
 
 trashBtnEl.onclick = function(){
     on();
@@ -54,6 +55,8 @@ deleteBtnEl.onclick = function(){
 menuBtnEl.onclick = function(){
     sidebarEl.classList.toggle("active")
 }
+
+
 
 homeBtnEl.onclick = function(){
     //top bar
@@ -105,15 +108,17 @@ accountBtnEl.onclick = function(){
 }
 
 settingsBtnEl.onclick = function(){
-    //top bar
-    document.getElementById("title").innerHTML = "Settings";
-    document.getElementById("taskCountArea").style.display="none";
-    document.getElementById("removeAll-button").style.display="none";
-    //action zone
-    document.getElementById("task-list").style.display="none";
-    document.getElementById("account-zone").style.display="none";
-    document.getElementById("about-zone").style.display="none";
-    document.getElementById("settings-zone").style.display="block";
+    document.getElementById("sidebar").style.backgroundColor="var(--backColorDark)";
+    document.getElementById("mainarea").style.backgroundColor="var(--backColorDark)";
+    document.getElementById("TaskArea").style.backgroundColor="var(--taskBackColorDark)";
+    document.getElementById("task-header").style.backgroundColor="var(--headerColorDark)";
+    /*document.getElementsByClassName("list-element").style.backgroundColor="var(--taskColorDark)";*/
+    /*listEl.classList.toggle("active");*/
+
+    /*change all text color for dark mode*/
+    
+
+
     //button color
     if(settingsBtnEl.classList == "active")
     {
@@ -219,6 +224,7 @@ function appendTaskToTaskListEl(item){
     let itemValue = item[1]; /*ItemValue will be an array, [the task, date] */
 
     let newEl = document.createElement("li"); //Create an "li" element
+    newEl.classList.add('list-element');
     /*newEl.textContent = itemValue;  //Put the value argument inside the "li" element*/
     newEl.innerHTML += `<div id="left-portion">
                             <div id="title-portion">${itemValue[0]}</div>
