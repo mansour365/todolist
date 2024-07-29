@@ -33,9 +33,23 @@ const deleteBtnEl = document.getElementById("Delete-btn"); /*final delete button
 
 const homeBtnEl = document.getElementById("home");
 const accountBtnEl = document.getElementById("account");
-const settingsBtnEl = document.getElementById("settings");
+const darkModeBtnEl = document.getElementById("darkMode");
 const aboutBtnEl = document.getElementById("about");
 const listEl = document.getElementsByClassName("list-element");
+
+
+const login = true;
+if(login == true){
+    //hide login card
+    document.getElementById("loginCard").style.display="none";
+
+    //show other elements
+    document.getElementById("sidebar").style.display="flex";
+    document.getElementById("taskArea").style.display="flex";
+    document.getElementById("inputArea").style.display="flex";
+    document.getElementById("task-header").style.display="flex";
+}
+
 
 trashBtnEl.onclick = function(){
     on();
@@ -65,7 +79,7 @@ homeBtnEl.onclick = function(){
     document.getElementById("removeAll-button").style.display="block";
     //action zone
     document.getElementById("account-zone").style.display="none";
-    document.getElementById("settings-zone").style.display="none";
+    document.getElementById("darkMode-zone").style.display="none";
     document.getElementById("about-zone").style.display="none";
     document.getElementById("task-list").style.display="flex";
     //button color
@@ -76,7 +90,7 @@ homeBtnEl.onclick = function(){
     else{
         homeBtnEl.classList.toggle("active");
         aboutBtnEl.classList.remove("active");
-        settingsBtnEl.classList.remove("active");
+        darkModeBtnEl.classList.remove("active");
         accountBtnEl.classList.remove("active");
     }
 
@@ -90,7 +104,7 @@ accountBtnEl.onclick = function(){
     document.getElementById("removeAll-button").style.display="none";
     //action zone
     document.getElementById("task-list").style.display="none";
-    document.getElementById("settings-zone").style.display="none";
+    document.getElementById("darkMode-zone").style.display="none";
     document.getElementById("about-zone").style.display="none";
     document.getElementById("account-zone").style.display="block";
     //button color
@@ -101,31 +115,49 @@ accountBtnEl.onclick = function(){
     else{
         accountBtnEl.classList.toggle("active");
         aboutBtnEl.classList.remove("active");
-        settingsBtnEl.classList.remove("active");
+        darkModeBtnEl.classList.remove("active");
         homeBtnEl.classList.remove("active");
     }
     
 }
 
-settingsBtnEl.onclick = function(){
+darkModeBtnEl.onclick = function(){
     document.getElementById("sidebar").style.backgroundColor="var(--backColorDark)";
     document.getElementById("mainarea").style.backgroundColor="var(--backColorDark)";
-    document.getElementById("TaskArea").style.backgroundColor="var(--taskBackColorDark)";
+    document.getElementById("taskArea").style.backgroundColor="var(--taskBackColorDark)";
     document.getElementById("task-header").style.backgroundColor="var(--headerColorDark)";
     /*document.getElementsByClassName("list-element").style.backgroundColor="var(--taskColorDark)";*/
     /*listEl.classList.toggle("active");*/
 
     /*change all text color for dark mode*/
-    
+    document.getElementById("menu").style.color="var(--subTextDark)";
+    document.getElementById("home").style.color="var(--subTextDark)";
+    document.getElementById("account").style.color="var(--subTextDark)";
+    document.getElementById("darkMode").style.color="var(--subTextDark)";
+    document.getElementById("about").style.color="var(--subTextDark)";
+
+    /*Add task button */
+    document.getElementById("addTaskBtn").style.color="var(--mainTextDark)";
+    document.getElementById("addTaskBtn").style.backgroundColor="darkgreen"; /*temp*/
+
+    /*task header area*/
+    document.getElementById("task-header").style.backgroundColor="var(--headerColorDark)";
+    document.getElementById("title").style.color="var(--mainTextDark)";
+    document.getElementById("taskCountArea").style.color="var(--subTextDark)";
+
+    /*toggle "on" dark mode for the list*/
+    taskListEL.classList.toggle("darkMode");
+
+   
 
 
     //button color
-    if(settingsBtnEl.classList == "active")
+    if(darkModeBtnEl.classList == "active")
     {
         return; //do nothing
     }
     else{
-        settingsBtnEl.classList.toggle("active");
+        darkModeBtnEl.classList.toggle("active");
         aboutBtnEl.classList.remove("active");
         homeBtnEl.classList.remove("active");
         accountBtnEl.classList.remove("active");
@@ -142,7 +174,7 @@ aboutBtnEl.onclick = function(){
     //action zone
     document.getElementById("task-list").style.display="none";
     document.getElementById("account-zone").style.display="none";
-    document.getElementById("settings-zone").style.display="none";
+    document.getElementById("darkMode-zone").style.display="none";
     document.getElementById("about-zone").style.display="block";
     //button color
     if(aboutBtnEl.classList == "active")
@@ -153,7 +185,7 @@ aboutBtnEl.onclick = function(){
         aboutBtnEl.classList.toggle("active");
         homeBtnEl.classList.remove("active");
         accountBtnEl.classList.remove("active");
-        settingsBtnEl.classList.remove("active");
+        darkModeBtnEl.classList.remove("active");
     }
 }
 
@@ -226,12 +258,12 @@ function appendTaskToTaskListEl(item){
     let newEl = document.createElement("li"); //Create an "li" element
     newEl.classList.add('list-element');
     /*newEl.textContent = itemValue;  //Put the value argument inside the "li" element*/
-    newEl.innerHTML += `<div id="left-portion">
-                            <div id="title-portion">${itemValue[0]}</div>
-                            <div id="date-portion">${itemValue[1]}</div>
+    newEl.innerHTML += `<div class="left-portion">
+                            <div class="title-portion">${itemValue[0]}</div>
+                            <div class="date-portion">${itemValue[1]}</div>
                         </div>
-                        <div id="right-portion">
-                            <button id="options-btn">
+                        <div class="right-portion">
+                            <button class="options-btn">
                                 <span class="material-symbols-outlined">more_vert</span>
                             </button>
                         </div>`;

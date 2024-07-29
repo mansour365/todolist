@@ -38,9 +38,9 @@
                 <span class="material-symbols-outlined">person</span>
                 <p id="sidebar-linkName">Account</p>
             </a>
-            <a href="#settings" id="settings">
+            <a href="#darkMode" id="darkMode">
                 <span class="material-symbols-outlined">dark_mode</span>
-                <p id="sidebar-linkName">Settings</p>
+                <p id="sidebar-linkName">Dark Mode</p>
             </a>
             <a href="#about" id="about">
                 <span class="material-symbols-outlined">info</span>
@@ -49,28 +49,47 @@
         </div>
 
         <div id="mainarea">
+
+            <div id="loginCard">
+                <!--https://www.w3schools.com/css/css_form.asp-->
+                <!--https://www.w3schools.com/css/tryit.asp?filename=trycss_forms-->
+                <!--https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgdrhY6zM7txEf61nPO67_Cl7rOyCGsyEb9GaIEqe3M-p-yN2nJeBUGCXkDygK7t8xYVcKwSgu4v0_u6EZF5srUh16p0vNl1K8hBeBV8dg-KcOpt7y8vrkamMOU2HxW0STp0JDEp21FWuCWxDXZX0EtxoLPSBWR6WwhXZglXIvWXbh24ojuyofD6htY8D4/s3396/userinter.png-->
+                <p>Image of notes</p>
+                <h1 id="login-title">Sign in</h1>
+                
+                <input id="email" type="email" placeholder="Email">
+                <input id="password" type="password" placeholder="Password">
+                <input id="password2" type="password" placeholder="Confirm password">
+        
+                <button id="sign-in">Sign in</button>
+                <br><br>
+                <button id="forgot">Forgot password?</button> 
+                <button id="create-account">Create Account</button>
+                <button id="sign-up">Sign Up</button>
+                <button id="cancel-create-account"> Cancel</button>
+            </div>
             
-            <div class="inputArea">
+            <div id="inputArea">
                 <input type="text" id="input-field" placeholder="Enter a new task here...">
                 <button id="addTaskBtn">Add Task</button>
             </div>
-            
-            <div id="TaskArea">
-                <div id="task-header">
 
-                    <div id="leftTitleArea">
-                        <div id ="title">To-Do List</div>
-                        <!--<div id="dateArea"></div>-->
-                        <div id="taskCountArea"></div>
-                    </div>
-
-                    <div class="rightTitleArea">
-                        <button id="removeAll-button">
-                            <span class="material-symbols-outlined">delete</span>
-                        </button>
-                    </div>
-
+            <div id="task-header">
+                <div id="leftTitleArea">
+                    <div id ="title">To-Do List</div>
+                    <!--<div id="dateArea"></div>-->
+                    <div id="taskCountArea"></div>
                 </div>
+
+                <div class="rightTitleArea">
+                    <button id="removeAll-button">
+                        <span class="material-symbols-outlined">delete</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div id="taskArea">
+
 
                 <div id="action-zone">
                     <ul id="task-list">
@@ -80,8 +99,8 @@
                         <p>Last Login: </p>
                         <p>Delete Account - Warning cannot undo</p>
                     </div>
-                    <div id="settings-zone">
-                        <p>Settings page</p>
+                    <div id="darkMode-zone">
+
                     </div>
                     <div id="about-zone">
                         <p>About this website</p>
@@ -121,24 +140,7 @@
 
     
 
-    <div id="loginCard">
-        <!--https://www.w3schools.com/css/css_form.asp-->
-        <!--https://www.w3schools.com/css/tryit.asp?filename=trycss_forms-->
-        <!--https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgdrhY6zM7txEf61nPO67_Cl7rOyCGsyEb9GaIEqe3M-p-yN2nJeBUGCXkDygK7t8xYVcKwSgu4v0_u6EZF5srUh16p0vNl1K8hBeBV8dg-KcOpt7y8vrkamMOU2HxW0STp0JDEp21FWuCWxDXZX0EtxoLPSBWR6WwhXZglXIvWXbh24ojuyofD6htY8D4/s3396/userinter.png-->
-        <p>Image of notes</p>
-        <h1 id="login-title">Sign in</h1>
-        
-        <input id="email" type="email" placeholder="Email">
-        <input id="password" type="password" placeholder="Password">
-        <input id="password2" type="password" placeholder="Confirm password">
-
-        <button id="sign-in">Sign in</button>
-        <br><br>
-        <button id="forgot">Forgot password?</button> 
-        <button id="create-account">Create Account</button>
-        <button id="sign-up">Sign Up</button>
-        <button id="cancel-create-account"> Cancel</button>
-    </div>
+    
 
     <!--Temporary info for debugging purposes-->
     <div class="user-details-container">
