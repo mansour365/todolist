@@ -77,6 +77,8 @@ p{
     background-color:rgb(236, 229, 218); /*background color of sidebar*/
     background-color:var(--backColor);
 
+    /*background-color: rgba(255, 255, 255, 0.87);*/
+
     padding-top: 47px; /*padding on top of sidebar*/
     transition: all 0.5s ease; /*transition for sidebar expansion*/
     /*border: red solid 1px;*/
@@ -85,6 +87,7 @@ p{
 #sidebar-linkName{
     display: none; /*when not expanded the link name will not show*/
     margin-left:15px; /*Space betwwen icon and text on an extended side menu*/
+    white-space: nowrap; /*make sidebar link names to not wrap*/
 }
 
 #sidebar.active{ /*When the sidebar is expanded*/
@@ -102,7 +105,7 @@ p{
     margin-right:30px; /*margin to the right of a sidebar button*/
     padding:8px 10px; /*padding inside a sidebar button*/
     border-radius: 100px; /*make the button completely round*/
-    color:var(--subText); /*default color of sidebar button (symbol or name)*/
+    color:rgb(37, 37, 37); /*default color of sidebar button (symbol or name)*/
     text-decoration: none; /*removes the underline associated with links*/
     transition: all 0.3s ease; /*transition for color change on hover*/
     /*background-color: rgba(255, 255, 255, 0); /*transluscent background color around button, used as tool for testing*/
@@ -110,9 +113,7 @@ p{
 }
 
 #sidebar a.active{  /*when a sidebar button is associated with the current page*/
-    background-color: rgb(213, 232, 202); /*active button has light green background*/
-    background-color:rgb(235, 220, 249);
-    background-color: var(--highlightColor);
+    background-color: rgb(189, 231, 253);/*active button has light green background*/
     color: black; /*active button is black*/
     & .material-symbols-outlined{  
         font-variation-settings:
@@ -123,7 +124,7 @@ p{
     }
 }
 #sidebar a:hover{  /*when you hover over a sidebar button*/
-    background-color: rgb(185, 201, 176); /*background color of a button that been hovered over*/
+    background-color: rgb(171, 209, 227); /*background color of a button that been hovered over*/
     transform: scale(1.01); /*scale of sidebar button when hovered over*/
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; /*shadow of button*/
     & .material-symbols-outlined{
@@ -248,7 +249,7 @@ p{
     justify-content: space-between;
     margin-bottom: 10px;
     margin-right:25px;
-    height:110px;
+    min-height:84px;
     border-radius:15px;
     background-color: var(--headerColor);
     /*border:red 1px solid;*/
@@ -438,15 +439,16 @@ p{
     /*border: solid red 1px;*/
 }
 #task-list.darkMode{
-    color: white;
+    color: rgba(255, 255, 255, 0.87); /*color of task title in dark mode*/
 
     & .list-element{
-        border-bottom: 1px rgb(255, 255, 255) solid;
+        border-bottom: 1px rgba(255, 255, 255, 0.38) solid; /*color of line separators in dark mode*/
     }
     
     & .date-portion{
-        color:white;
+        color:rgba(255, 255, 255, 0.60); /*color of date in dark mode*/
     }
+
 }
 
 /*LI*/

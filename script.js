@@ -122,19 +122,19 @@ accountBtnEl.onclick = function(){
 }
 
 darkModeBtnEl.onclick = function(){
-    document.getElementById("sidebar").style.backgroundColor="var(--backColorDark)";
-    document.getElementById("mainarea").style.backgroundColor="var(--backColorDark)";
-    document.getElementById("taskArea").style.backgroundColor="var(--taskBackColorDark)";
-    document.getElementById("task-header").style.backgroundColor="var(--headerColorDark)";
+    document.getElementById("sidebar").style.backgroundColor="rgb(18, 18, 18)";
+    document.getElementById("mainarea").style.backgroundColor="rgb(18, 18, 18)";
+    document.getElementById("taskArea").style.backgroundColor="rgb(47, 47, 47)";
+    document.getElementById("task-header").style.backgroundColor="rgb(47, 47, 47)";
     /*document.getElementsByClassName("list-element").style.backgroundColor="var(--taskColorDark)";*/
     /*listEl.classList.toggle("active");*/
 
     /*change all text color for dark mode*/
-    document.getElementById("menu").style.color="var(--subTextDark)";
-    document.getElementById("home").style.color="var(--subTextDark)";
-    document.getElementById("account").style.color="var(--subTextDark)";
-    document.getElementById("darkMode").style.color="var(--subTextDark)";
-    document.getElementById("about").style.color="var(--subTextDark)";
+    document.getElementById("menu").style.color="rgba(255, 255, 255, 0.87)";
+    document.getElementById("home").style.color="rgba(255, 255, 255, 0.87)";
+    document.getElementById("account").style.color="rgba(255, 255, 255, 0.87)";
+    document.getElementById("darkMode").style.color="rgba(255, 255, 255, 0.87)";
+    document.getElementById("about").style.color="rgba(255, 255, 255, 0.87)";
 
     /*Add task button */
     document.getElementById("addTaskBtn").style.color="var(--mainTextDark)";
@@ -142,8 +142,8 @@ darkModeBtnEl.onclick = function(){
 
     /*task header area*/
     document.getElementById("task-header").style.backgroundColor="var(--headerColorDark)";
-    document.getElementById("title").style.color="var(--mainTextDark)";
-    document.getElementById("taskCountArea").style.color="var(--subTextDark)";
+    document.getElementById("title").style.color="rgba(255, 255, 255, 0.87)";
+    document.getElementById("taskCountArea").style.color="rgba(255, 255, 255, 0.60)";
 
     /*toggle "on" dark mode for the list*/
     taskListEL.classList.toggle("darkMode");
@@ -177,8 +177,7 @@ aboutBtnEl.onclick = function(){
     document.getElementById("darkMode-zone").style.display="none";
     document.getElementById("about-zone").style.display="block";
     //button color
-    if(aboutBtnEl.classList == "active")
-    {
+    if(aboutBtnEl.classList == "active"){
         return; //do nothing
     }
     else{
