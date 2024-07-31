@@ -20,9 +20,13 @@ const tasksInDB = ref(database, "tasks");
 
 
 //HTML Elements
+const twoSection = document.getElementById("two-section");
+
 const inputFieldEl = document.getElementById("input-field");
 const addBtnEl = document.getElementById("addTaskBtn");
-const taskListEL = document.getElementById("task-list");
+const taskHeaderEl = document.getElementById("task-header");
+const taskAreaEl = document.getElementById("taskArea");
+const taskListEl = document.getElementById("task-list");
 const taskCountEl = document.getElementById("taskCountArea");
 
 const menuBtnEl = document.getElementById("menu");
@@ -31,11 +35,12 @@ const trashBtnEl = document.getElementById("removeAll-button"); /*Button to remo
 const darkAreaEl = document.getElementById("deleteListOverlay"); /*dark area when overlay happens*/
 const deleteBtnEl = document.getElementById("Delete-btn"); /*final delete button to delete the list*/
 
-const homeBtnEl = document.getElementById("home");
-const accountBtnEl = document.getElementById("account");
-const darkModeBtnEl = document.getElementById("darkMode");
-const aboutBtnEl = document.getElementById("about");
-const listEl = document.getElementsByClassName("list-element");
+const homeBtnEl = document.getElementById("homeBtn");
+const accountBtnEl = document.getElementById("accountBtn");
+const darkModeBtnEl = document.getElementById("darkModeBtn");
+const aboutBtnEl = document.getElementById("aboutBtn");
+
+
 
 
 const login = true;
@@ -83,14 +88,12 @@ homeBtnEl.onclick = function(){
     document.getElementById("about-zone").style.display="none";
     document.getElementById("task-list").style.display="flex";
     //button color
-    if(homeBtnEl.classList == "active")
-    {
+    if(homeBtnEl.classList == "active"){
         return; //do nothing
     }
     else{
         homeBtnEl.classList.toggle("active");
         aboutBtnEl.classList.remove("active");
-        darkModeBtnEl.classList.remove("active");
         accountBtnEl.classList.remove("active");
     }
 
@@ -108,62 +111,32 @@ accountBtnEl.onclick = function(){
     document.getElementById("about-zone").style.display="none";
     document.getElementById("account-zone").style.display="block";
     //button color
-    if(accountBtnEl.classList == "active")
-    {
+    if(accountBtnEl.classList == "active"){
         return; //do nothing
     }
     else{
         accountBtnEl.classList.toggle("active");
         aboutBtnEl.classList.remove("active");
-        darkModeBtnEl.classList.remove("active");
         homeBtnEl.classList.remove("active");
     }
     
 }
 
 darkModeBtnEl.onclick = function(){
-    document.getElementById("sidebar").style.backgroundColor="rgb(18, 18, 18)";
-    document.getElementById("mainarea").style.backgroundColor="rgb(18, 18, 18)";
-    document.getElementById("taskArea").style.backgroundColor="rgb(47, 47, 47)";
-    document.getElementById("task-header").style.backgroundColor="rgb(47, 47, 47)";
-    /*document.getElementsByClassName("list-element").style.backgroundColor="var(--taskColorDark)";*/
-    /*listEl.classList.toggle("active");*/
-
-    /*change all text color for dark mode*/
-    document.getElementById("menu").style.color="rgba(255, 255, 255, 0.87)";
-    document.getElementById("home").style.color="rgba(255, 255, 255, 0.87)";
-    document.getElementById("account").style.color="rgba(255, 255, 255, 0.87)";
-    document.getElementById("darkMode").style.color="rgba(255, 255, 255, 0.87)";
-    document.getElementById("about").style.color="rgba(255, 255, 255, 0.87)";
-
-    /*Add task button */
-    document.getElementById("addTaskBtn").style.color="var(--mainTextDark)";
-    document.getElementById("addTaskBtn").style.backgroundColor="darkgreen"; /*temp*/
-
-    /*task header area*/
-    document.getElementById("task-header").style.backgroundColor="var(--headerColorDark)";
-    document.getElementById("title").style.color="rgba(255, 255, 255, 0.87)";
-    document.getElementById("taskCountArea").style.color="rgba(255, 255, 255, 0.60)";
-
-    /*toggle "on" dark mode for the list*/
-    taskListEL.classList.toggle("darkMode");
-
-   
-
-
-    //button color
-    if(darkModeBtnEl.classList == "active")
-    {
-        return; //do nothing
+    //if dark mode is already active, turn it off
+    if(darkModeBtnEl.classList == "active"){
+        darkModeBtnEl.classList.remove("active");/*dark mode button*/
+        twoSection.classList.remove("darkMode"); /*background color*/
+        sidebarEl.classList.remove("darkMode"); /*sidebar*/
     }
+    //Otherwise turn dark mode on
     else{
-        darkModeBtnEl.classList.toggle("active");
-        aboutBtnEl.classList.remove("active");
-        homeBtnEl.classList.remove("active");
-        accountBtnEl.classList.remove("active");
+        darkModeBtnEl.classList.toggle("active");/*dark mode button*/
+        twoSection.classList.toggle("darkMode");/*background color*/
+        sidebarEl.classList.toggle("darkMode"); /*sidebar*/
     }
-
     
+  
 }
 
 aboutBtnEl.onclick = function(){
@@ -184,7 +157,6 @@ aboutBtnEl.onclick = function(){
         aboutBtnEl.classList.toggle("active");
         homeBtnEl.classList.remove("active");
         accountBtnEl.classList.remove("active");
-        darkModeBtnEl.classList.remove("active");
     }
 }
 
@@ -219,14 +191,14 @@ onValue(tasksInDB, function(snapshot){
     }
     else{
         //In this case no snapshots exist so display no more tasks.
-        taskListEL.innerHTML = "No more tasks. ";
+        taskListEl.innerHTML = "No more tasks. ";
         taskCounterFunc();
     }
 
 })
 
 function clearTasksListEL(){
-    taskListEL.innerHTML = '';
+    taskListEl.innerHTML = '';
 }
 
 function handleNewTask(){
@@ -282,7 +254,7 @@ function appendTaskToTaskListEl(item){
         
     })
 
-    taskListEL.append(newEl); //append the "li" element to the list
+    taskListEl.append(newEl); //append the "li" element to the list
 }
 
 

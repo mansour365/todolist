@@ -7,51 +7,54 @@
     --highlightColor:rgb(189, 231, 253);
     --addTaskColor:rgb(191, 238, 209);
     --smallBtnColor:rgb(233, 241, 250);
+
     --mainText:rgb(0, 0, 0);
     --subText:rgb(59, 61, 58);
 
     /*Dark mode colors*/
-    --backColorDark: rgb(35, 51, 58);
+    --backColorDark: rgb(18, 18, 18);
     --taskColorDark:white;
-    --headerColorDark:rgb(45, 45, 45);
-    --taskBackColorDark:rgb(45, 45, 45);
+    --headerColorDark:rgb(47, 47, 47);
+    --taskBackColorDark:rgb(47, 47, 47);
     --highlightColorDark:rgb(52, 73, 84);
-    --addTaskColorDark:rgb(255, 194, 130);
+    --addTaskColorDark:rgb(205, 156, 104);
     --smallBtnColorDark:rgb(255, 255, 255);
-    --mainTextDark:rgb(252, 252, 252);
-    --subTextDark:rgb(180, 180, 180);
+
+    --mainTextDark:rgba(255, 255, 255, 0.87);
+    --subTextDark:rgba(255, 255, 255, 0.60);
 }
 
 html, body{
     margin:0;
     padding:0;
     height: 100%;
-
     display: flex; /*This is flexbox for the entire web page, (needed to extend the body to the bottom)*/
     flex-direction: column;  /*Items in this flexbox are stcked up to down*/
-
     /*this removes all the scroll bars, more like an app*/
     -ms-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-
-    font-family: "Roboto", sans-serif; /*default font for page*/
+    /*default font for page*/
+    font-family: "Roboto", sans-serif; 
     font-weight: 400;
     font-style: normal;
     user-select: none;  /*Makes the text un-highlightable for entire page */
-    /*background-color: rgb(240, 244, 248);*/
 }
 
 /*placeholder text color*/
-::placeholder {
+.light::placeholder {
     color: var(--subText);
     opacity: 1; /* Firefox */
+}
+.dark::placeholder{
+    color: red;
+    opacity: 1; /* Firefox */
+
 }
 ::-ms-input-placeholder { /* Edge 12 -18 */
     color:var(--subText);
 }
-
 
 p{
     margin:auto;
@@ -59,12 +62,53 @@ p{
 
 /****************** To DO List Portion *********************/
 
-.two-section{ /*Website split in 2 sections (sidebar and mainArea)*/
+#two-section{ /*Website split in 2 sections (sidebar and mainArea)*/
     display:flex; /*two parts of website are split using flexbox*/
     flex-direction: row;  /*two sections are in side by side formation (sidebar and mainArea)*/
     flex-wrap: nowrap; /*never wrap these two section*/
     flex-grow:1; /*both sections extend to bottom of page*/
     justify-content: flex-start; /*flex elements get packed towards the start (first sidebar, then mainarea)*/
+    background-color:var(--backColor); /*background color of sidebar*/
+}
+#two-section.darkMode{
+    background-color:var(--backColorDark);
+
+    & #input-field{
+        background-color:var(--taskBackColorDark); /*background color of input field*/
+
+    }
+
+    & #addTaskBtn{
+        background-color: var(--addTaskColorDark);
+        color: var(--mainTextDark);
+    }
+
+    & #task-header{
+        background-color: var(--headerColorDark);
+        & #title{
+            color:var(--mainTextDark);
+        }
+        & #taskCountArea{
+            color:var(--subTextDark);
+        }
+    }
+
+    & #taskArea{
+        background-Color:var(--taskBackColorDark);
+    }
+
+    & #task-list{
+        color: rgba(255, 255, 255, 0.87); /*color of task title in dark mode*/
+
+        & .list-element{
+            border-bottom: 1px rgba(255, 255, 255, 0.38) solid; /*color of line separators in dark mode*/
+        }
+        
+        & .date-portion{
+            color:rgba(255, 255, 255, 0.60); /*color of date in dark mode*/
+        }
+    }
+
 }
 
 #sidebar{
@@ -74,15 +118,22 @@ p{
     flex-wrap:nowrap; /*no wrap on this flex box*/
     gap: 30px; /*flexbox gap*/
     width: 105px; /*width of sidebar, required for transition to work*/
-    background-color:rgb(236, 229, 218); /*background color of sidebar*/
-    background-color:var(--backColor);
-
-    /*background-color: rgba(255, 255, 255, 0.87);*/
-
     padding-top: 47px; /*padding on top of sidebar*/
     transition: all 0.5s ease; /*transition for sidebar expansion*/
     /*border: red solid 1px;*/
 }
+
+
+#sidebar.darkMode{
+    & a{
+        color:var(--mainTextDark);
+    }
+    & a.active{
+        background-color:rgb(109, 109, 109);
+        color:white;
+    }
+}
+
 
 #sidebar-linkName{
     display: none; /*when not expanded the link name will not show*/
@@ -100,7 +151,6 @@ p{
 #sidebar a{  /* A sidebar button (expanded or contracted) */
     display:flex; /*button uses flexbox to organize the icon and link name*/
     flex-direction: row; /*icon and link name will be side by side*/
-
     margin-left:30px; /*margin to the left of a sidebar button*/
     margin-right:30px; /*margin to the right of a sidebar button*/
     padding:8px 10px; /*padding inside a sidebar button*/
@@ -108,7 +158,6 @@ p{
     color:rgb(37, 37, 37); /*default color of sidebar button (symbol or name)*/
     text-decoration: none; /*removes the underline associated with links*/
     transition: all 0.3s ease; /*transition for color change on hover*/
-    /*background-color: rgba(255, 255, 255, 0); /*transluscent background color around button, used as tool for testing*/
     /*border: rgb(255, 0, 0) 1px solid;*/
 }
 
@@ -124,9 +173,7 @@ p{
     }
 }
 #sidebar a:hover{  /*when you hover over a sidebar button*/
-    background-color: rgb(171, 209, 227); /*background color of a button that been hovered over*/
     transform: scale(1.01); /*scale of sidebar button when hovered over*/
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; /*shadow of button*/
     & .material-symbols-outlined{
         font-variation-settings:
         'FILL' 1,      /*Icon is fiiled when button is hovered over*/
@@ -135,6 +182,13 @@ p{
         'opsz' 24
     }
 }
+
+/*specifically for the dark mode button only*/
+#sidebar #darkModeBtn.active{
+    background-color: rgb(109, 109, 109);
+    color: rgb(252, 238, 131);
+}
+
 
 .material-symbols-outlined {   /*default google icon css*/
   font-variation-settings:
@@ -150,38 +204,12 @@ p{
     display:flex; /*estblish that this container uses flexbox*/
     flex-direction: column; /*items are layout in row direction*/
     flex-wrap: nowrap; /*all items will appear on one line (no wrapping)*/
-    background-color:rgb(236, 229, 218 ); /*background color of main area section*/
-    background-color: rgb(235, 230, 242);
-    background-color: var(--backColor);
     width:100%; /*width of main area*/
     overflow: hidden; /*important, otherwise mainArea can go off screen with big task names*/
     /*border: blue 1px solid;*/
 }
 
-/*-----------------Login Portion------------------*/
-#login-title{
-    margin: auto;
-}
-#loginCard{
-    width: 300px;
-    height: 300px;
-    background-color: rgb(255, 255, 255);
-    margin: auto;
-    padding: 20px;
-    border-radius: 2%;
-    display:flex;
-    flex-direction: column;
-}
-/*Hidden sign up button*/
-#sign-up{
-    display:none;
-}
-#password2{
-    display:none;
-}
-#cancel-create-account{
-    display:none;
-}
+
 
 
 
@@ -191,12 +219,10 @@ p{
     display:none;
     justify-content: flex-end; /*flex elements get packed towards the start (inputfield, then addtask btn)*/
     gap:10px; /*the gap betwwen the input and button*/
-
     margin-left: 0px; /*0 margin to left of this area*/
     margin-right: 24px; /*keeps this area at the same width of the task area (may not be needed)*/
     padding-top:40px;
     padding-bottom: 15px;
-
     height: 45px;
     max-width:700px;
     /*border: solid red 1px;*/
@@ -211,6 +237,7 @@ p{
     padding: 25px; /*padding of input field*/
     background-color:rgb(255, 255, 255); /*background color of input field*/
 }
+
 #addTaskBtn{
     font-family: "Roboto", sans-serif; /*font of addTaskBtn*/
     font-size: 13px; /*font size of addTaskBtn*/
@@ -229,6 +256,7 @@ p{
     color:var(--mainText);
     transition: all 0.3s ease; /*transition effect of addTaskBtn*/
 }
+
 #addTaskBtn:hover{ /*effect when hover over button*/
     cursor: pointer; /*change pointer on hover of addTaskBtn*/
     background-color: rgb(246, 208, 162); /*change background color on hover of addTaskBtn*/
@@ -255,34 +283,6 @@ p{
     /*border:red 1px solid;*/
 }
 
-#taskArea{
-    display:flex;
-    display:none; /*hiiden by default*/
-    flex-direction:column;
-    margin-left:0px;
-    margin-right:25px;
-    margin-bottom: 20px;
-    height:100%;
-    border-radius: 15px;
-    background-color: var(--taskBackColor);
-    overflow: hidden;
-    /*border: rgb(43, 253, 85) 1px solid;*/
-}
-
-#action-zone{
-    height:100%;
-    /*border:red solid 1px;*/
-}
-#account-zone{
-    display:none; /*hidden by defult*/
-} 
-#darkMode-zone{
-    display:none; /*hidden by defult*/
-}
-#about-zone{
-    display:none; /*hidden by defult*/
-}
-
 #leftTitleArea{
     display:flex;
     flex-direction: column;
@@ -293,7 +293,6 @@ p{
     /*border: rgb(119, 255, 0) 1px solid;*/
 }
 
-
 #title{
     font-weight: 500;
     font-size: 22px;
@@ -302,10 +301,10 @@ p{
     margin-top:20px;
     margin-bottom: 9px;
     margin-left:20px;
+    color:black;
 
     /*border: red 1px solid;*/
 }
-
 #taskCountArea{
     display:block;
     font-size: 12px;
@@ -317,15 +316,12 @@ p{
 #removeAll-button{
     margin-top: 20px;
     margin-right:20px;
-
     padding-left:12px;
     padding-right:12px;
     padding-top:10px;
     padding-bottom:7px;
-
     background-color: rgb(252, 252, 252);
     background-color:var(--smallBtnColor);
-
     color: var(--subText);
     border-radius: 14px;
     scale: 0.8;
@@ -358,13 +354,11 @@ p{
     max-height:200px;
     background-color:rgb(252, 252, 252);
     border-radius: 20px;
-    
     position: absolute;
     top:0;
     bottom: 0;
     left: 0;
     right: 0;
-
     margin:auto;
     z-index:3;
 }
@@ -404,7 +398,6 @@ p{
     border-radius:20px;
     background-color:rgb(252, 252, 252);
     color: var(--subText);
-
 }
 .Overlay-btn:hover{
     background-color: rgb(246, 208, 162);
@@ -425,6 +418,44 @@ p{
     background-color:rgb(227, 193, 150);
 }
 
+#taskArea{
+    display:flex;
+    display:none; /*hiiden by default*/
+    flex-direction:column;
+    margin-left:0px;
+    margin-right:25px;
+    margin-bottom: 20px;
+    height:100%;
+    border-radius: 15px;
+    background-color: var(--taskBackColor);
+    overflow: hidden;
+    /*border: rgb(43, 253, 85) 1px solid;*/
+}
+
+
+#action-zone{
+    height:100%;
+    /*border:red solid 1px;*/
+}
+#account-zone{
+    display:none; /*hidden by defult*/
+} 
+#darkMode-zone{
+    display:none; /*hidden by defult*/
+}
+#about-zone{
+    display:none; /*hidden by defult*/
+}
+
+
+
+
+
+
+
+
+
+
 
 /*UL*/
 #task-list{
@@ -438,19 +469,20 @@ p{
     color: var(--mainText);
     /*border: solid red 1px;*/
 }
+/*
 #task-list.darkMode{
-    color: rgba(255, 255, 255, 0.87); /*color of task title in dark mode*/
+    color: rgba(255, 255, 255, 0.87); 
 
     & .list-element{
-        border-bottom: 1px rgba(255, 255, 255, 0.38) solid; /*color of line separators in dark mode*/
+        border-bottom: 1px rgba(255, 255, 255, 0.38) solid; 
     }
     
     & .date-portion{
-        color:rgba(255, 255, 255, 0.60); /*color of date in dark mode*/
+        color:rgba(255, 255, 255, 0.60); 
     }
 
 }
-
+*/
 /*LI*/
 .list-element{
     display:flex;
@@ -546,7 +578,30 @@ ul li:hover{
 
 
 
-
+/*-----------------Login Portion------------------*/
+#login-title{
+    margin: auto;
+}
+#loginCard{
+    width: 300px;
+    height: 300px;
+    background-color: rgb(255, 255, 255);
+    margin: auto;
+    padding: 20px;
+    border-radius: 2%;
+    display:flex;
+    flex-direction: column;
+}
+/*Hidden sign up button*/
+#sign-up{
+    display:none;
+}
+#password2{
+    display:none;
+}
+#cancel-create-account{
+    display:none;
+}
 
 
 
