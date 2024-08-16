@@ -193,7 +193,7 @@ p{
 
 /*specifically for the dark mode button only*/
 #sidebar #darkModeBtn.active{
-    background-color: rgb(109, 109, 109);
+    background-color: var(--backColorDark);
     color: rgb(252, 238, 131);
 }
 
