@@ -135,8 +135,6 @@ darkModeBtnEl.onclick = function(){
         twoSection.classList.toggle("darkMode");/*background color*/
         sidebarEl.classList.toggle("darkMode"); /*sidebar*/
     }
-    
-  
 }
 
 aboutBtnEl.onclick = function(){

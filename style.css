@@ -18,7 +18,7 @@
     --taskBackColorDark:rgb(47, 47, 47);
     --highlightColorDark:rgb(52, 73, 84);
     --addTaskColorDark:rgb(205, 156, 104);
-    --smallBtnColorDark:rgb(255, 255, 255);
+    --smallBtnColorDark:rgb(109, 109, 109);
 
     --mainTextDark:rgba(255, 255, 255, 0.87);
     --subTextDark:rgba(255, 255, 255, 0.60);
@@ -43,15 +43,11 @@ html, body{
 }
 
 /*placeholder text color*/
-.light::placeholder {
-    color: var(--subText);
+input::placeholder {
+    color: grey;
     opacity: 1; /* Firefox */
 }
-.dark::placeholder{
-    color: red;
-    opacity: 1; /* Firefox */
 
-}
 ::-ms-input-placeholder { /* Edge 12 -18 */
     color:var(--subText);
 }
@@ -75,7 +71,10 @@ p{
 
     & #input-field{
         background-color:var(--taskBackColorDark); /*background color of input field*/
+    }
 
+    & input::placeholder{
+        color:var(--subTextDark);
     }
 
     & #addTaskBtn{
@@ -90,6 +89,10 @@ p{
         }
         & #taskCountArea{
             color:var(--subTextDark);
+        }
+        & #removeAll-button{
+            color:var(--mainTextDark);
+            background-color:var(--smallBtnColorDark);
         }
     }
 
@@ -106,6 +109,11 @@ p{
         
         & .date-portion{
             color:rgba(255, 255, 255, 0.60); /*color of date in dark mode*/
+        }
+
+        & .options-btn{
+            background-color:var(--smallBtnColorDark);
+            color:var(--mainTextDark);
         }
     }
 
@@ -545,15 +553,19 @@ ul li:hover{
 
 .right-portion{
     min-width:70px;
+    display:flex;
+    justify-content: flex-end;
     /*border: green 1px solid;*/
+    
 }
 .options-btn{
-    padding-left:10px;
-    padding-right:10px;
+    padding-left:9px;
+    padding-right:9px;
     padding-top:8px;
     padding-bottom:8px;
 
     margin-top: 11px;
+    margin-bottom: 6px;
     margin-left:15px;
 
     background-color: rgb(252, 252, 252);
@@ -564,6 +576,7 @@ ul li:hover{
     border:none;
     cursor:pointer;
     transition: all 0.3s ease; /*check if needed*/
+    /*border: red 1px solid;*/
 }
 
 /*---------------Account card--------------*/
