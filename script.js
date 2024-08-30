@@ -3,7 +3,7 @@ import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase
 //ref needed to access the specific folder in the database
 //push needed to push a value to the folder on database
 //onValue method will run anytime an edit is made to the database
-import {getDatabase, ref, push, onValue, remove} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import {getDatabase, ref, push, update, onValue, remove} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 //these app settings fields are needed to craete an app object
 //the app object will be created with the initializeApp function
@@ -24,8 +24,6 @@ const twoSection = document.getElementById("two-section");
 
 const inputFieldEl = document.getElementById("input-field");
 const addBtnEl = document.getElementById("addTaskBtn");
-const taskHeaderEl = document.getElementById("task-header");
-const taskAreaEl = document.getElementById("taskArea");
 const taskListEl = document.getElementById("task-list");
 const taskCountEl = document.getElementById("taskCountArea");
 
@@ -39,6 +37,10 @@ const homeBtnEl = document.getElementById("homeBtn");
 const accountBtnEl = document.getElementById("accountBtn");
 const darkModeBtnEl = document.getElementById("darkModeBtn");
 const aboutBtnEl = document.getElementById("aboutBtn");
+
+const optionBtn = document.querySelector(".options-btn");
+
+
 
 
 
@@ -54,6 +56,8 @@ if(login == true){
     document.getElementById("inputArea").style.display="flex";
     document.getElementById("task-header").style.display="flex";
 }
+
+
 
 
 trashBtnEl.onclick = function(){
@@ -207,9 +211,10 @@ function handleNewTask(){
     }
     //Temporary
     let date = todayDate();
+    let checked = false;
     //push the input value to the database
     /*push(tasksInDB, inputValue);*/
-    push(tasksInDB, [inputValue, date]);
+    push(tasksInDB, [inputValue, date, checked]);
     //clear input field when add button is pressed
     clearInputFieldEl();
 }
@@ -219,41 +224,68 @@ function clearInputFieldEl(){
     inputFieldEl.value='';
 }
 
+
+    
 //function to add new task to the page
 function appendTaskToTaskListEl(item){
-    let itemID = item[0];
+    let itemID = item[0];  /*ID of the item*/
     let itemValue = item[1]; /*ItemValue will be an array, [the task, date] */
 
     let newEl = document.createElement("li"); //Create an "li" element
-    newEl.classList.add('list-element');
-    /*newEl.textContent = itemValue;  //Put the value argument inside the "li" element*/
-    newEl.innerHTML += `<div class="left-portion">
-                            <div class="title-portion">${itemValue[0]}</div>
-                            <div class="date-portion">${itemValue[1]}</div>
-                        </div>
-                        <div class="right-portion">
-                            <button class="options-btn">
-                                <span class="material-symbols-outlined">more_vert</span>
-                            </button>
-                        </div>`;
+    newEl.classList.add('list-element'); 
 
-    //Event listener that checks if any element was clicked on and the removes it
-    newEl.addEventListener("click", function(){
-        //exact location (ref followed by the databse, followed by the location of ID)
-        let exactLocationOfItemInDB = ref(database, `tasks/${itemID}`);
-        //A firebase function that takes an exact location and deletes that item
-        newEl.style.textDecoration="line-through";
-        //Add some delay
-        var delayInMilliseconds = 1000; //1 second
-        setTimeout(function() {
-            remove(exactLocationOfItemInDB); //remove the task from the database
-        }, delayInMilliseconds);
+    let rightEl = `<div class="right-portion">
+                        <button class="options-btn" id="${itemID}" onclick="handleOptionBtn(this.id)">
+                            <span class="material-symbols-outlined">close</span>
+                        </button>
+                    </div>`;
 
-        
-    })
-
+    if(itemValue[2] == true){
+        newEl.innerHTML += `<div class="left-portion" onclick="handleLeft('${itemID}', ${itemValue[2]})">
+                                <div class="check-portion">
+                                    <span class="material-symbols-outlined">task_alt</span>
+                                </div> 
+                                <div class="text-portion">
+                                    <div class="title-portion-strike">${itemValue[0]}</div>
+                                    <div class="date-portion">${itemValue[1]}</div>
+                                </div> 
+                            </div>` + rightEl;
+    }
+    else{
+        newEl.innerHTML += `<div class="left-portion" onclick="handleLeft('${itemID}', ${itemValue[2]})">
+                                <div class="check-portion">
+                                    <span class="material-symbols-outlined">radio_button_unchecked</span>
+                                </div> 
+                                <div class="text-portion">
+                                    <div class="title-portion">${itemValue[0]}</div>
+                                    <div class="date-portion">${itemValue[1]}</div>
+                                </div> 
+                            </div>` + rightEl;
+    }
+    
     taskListEl.append(newEl); //append the "li" element to the list
 }
+
+
+//Function that removes a task from database
+window.handleOptionBtn = (theID) => {
+    let exactLocationOfItemInDB = ref(database, `tasks/${theID}`);
+    remove(exactLocationOfItemInDB);
+}
+
+
+//function that marks a task as checked or unchecked
+window.handleLeft = (someID, strikethrough) => {
+    alert("item ID is: "+someID);
+    let exactLocationOfItemInDB = ref(database, `tasks/${someID}`);
+    if(strikethrough == false){
+        update(exactLocationOfItemInDB, {2:true});
+    }
+    else{
+        update(exactLocationOfItemInDB, {2:false});
+    }
+}
+
 
 
 function todayDate(){
@@ -292,7 +324,7 @@ function off() {
 
 
 
-//Event listener if click the "+" button
+//Event listener if click the "Add Task" button
 addBtnEl.addEventListener("click", handleNewTask, false);
 //Event listener if press the "Enter" key
 inputFieldEl.addEventListener("keypress", function(event){
