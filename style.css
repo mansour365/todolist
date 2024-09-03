@@ -71,6 +71,7 @@ p{
 
     & #input-field{
         background-color:var(--taskBackColorDark); /*background color of input field*/
+        color:var(--mainTextDark);
     }
 
     & input::placeholder{
@@ -94,10 +95,16 @@ p{
             color:var(--mainTextDark);
             background-color:var(--smallBtnColorDark);
         }
+        & #logout-button{
+            color:var(--mainTextDark);
+            background-color:var(--smallBtnColorDark);
+        }
+
     }
 
     & #taskArea{
         background-Color:var(--taskBackColorDark);
+        color:var(--mainTextDark);
     }
 
     & #task-list{
@@ -227,7 +234,7 @@ p{
     display:none;
     justify-content: flex-end; /*flex elements get packed towards the start (inputfield, then addtask btn)*/
     gap:10px; /*the gap betwwen the input and button*/
-    margin-left: 0px; /*0 margin to left of this area*/
+    margin-left: 1px; /*0 margin to left of this area*/
     margin-right: 24px; /*keeps this area at the same width of the task area (may not be needed)*/
     padding-top:40px;
     padding-bottom: 15px;
@@ -244,7 +251,14 @@ p{
     width:100%; /*width of input field*/
     padding: 25px; /*padding of input field*/
     background-color:rgb(255, 255, 255); /*background color of input field*/
+    color:black;
+    z-index:99;
 }
+#input-field:focus{
+    outline: 1px solid rgb(207, 207, 207);
+
+}
+
 
 #addTaskBtn{
     font-family: "Roboto", sans-serif; /*font of addTaskBtn*/
@@ -260,19 +274,19 @@ p{
     margin-bottom:0;
     margin-right:0;
     background-color: rgb(255, 220, 173); /*default color of addTaskBtn*/
-    background-color: var(--addTaskColor);
+    background-color: rgb(191, 238, 209);
     color:var(--mainText);
     transition: all 0.3s ease; /*transition effect of addTaskBtn*/
 }
 
 #addTaskBtn:hover{ /*effect when hover over button*/
     cursor: pointer; /*change pointer on hover of addTaskBtn*/
-    background-color: rgb(246, 208, 162); /*change background color on hover of addTaskBtn*/
+    background-color: rgb(180, 223, 195); /*change background color on hover of addTaskBtn*/
     transform: scale(1.01); /*change scale on hover of addTaskBtn*/
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 #addTaskBtn:active{  /*brief effect when click on button*/
-    background-color:rgb(227, 193, 150); /*brief button color when click on button*/
+    background-color:rgb(165, 205, 179); /*brief button color when click on button*/
     transform:scale(1); /*brief scale change of btn when click on btn*/
 }
 
@@ -322,6 +336,23 @@ p{
 }
 
 #removeAll-button{
+    margin-top: 20px;
+    margin-right:20px;
+    padding-left:12px;
+    padding-right:12px;
+    padding-top:10px;
+    padding-bottom:7px;
+    background-color: rgb(252, 252, 252);
+    background-color:var(--smallBtnColor);
+    color: var(--subText);
+    border-radius: 14px;
+    scale: 0.8;
+    border:none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+#logout-button{
+    display: none;
     margin-top: 20px;
     margin-right:20px;
     padding-left:12px;
@@ -447,12 +478,14 @@ p{
 }
 #account-zone{
     display:none; /*hidden by defult*/
+    padding:30px;
 } 
 #darkMode-zone{
     display:none; /*hidden by defult*/
 }
 #about-zone{
     display:none; /*hidden by defult*/
+    padding: 30px;
 }
 
 

@@ -45,7 +45,7 @@ const optionBtn = document.querySelector(".options-btn");
 
 
 
-const login = true;
+const login = false;
 if(login == true){
     //hide login card
     document.getElementById("loginCard").style.display="none";
@@ -86,6 +86,7 @@ homeBtnEl.onclick = function(){
     document.getElementById("title").innerHTML = "To-Do List";
     document.getElementById("taskCountArea").style.display="block";
     document.getElementById("removeAll-button").style.display="block";
+    document.getElementById("logout-button").style.display="none";
     //action zone
     document.getElementById("account-zone").style.display="none";
     document.getElementById("darkMode-zone").style.display="none";
@@ -109,6 +110,8 @@ accountBtnEl.onclick = function(){
     document.getElementById("title").innerHTML = "Account";
     document.getElementById("taskCountArea").style.display="none";
     document.getElementById("removeAll-button").style.display="none";
+    document.getElementById("logout-button").style.display="block";
+
     //action zone
     document.getElementById("task-list").style.display="none";
     document.getElementById("darkMode-zone").style.display="none";
@@ -146,6 +149,8 @@ aboutBtnEl.onclick = function(){
     document.getElementById("title").innerHTML = "About";
     document.getElementById("taskCountArea").style.display="none";
     document.getElementById("removeAll-button").style.display="none";
+    document.getElementById("logout-button").style.display="none";
+
     //action zone
     document.getElementById("task-list").style.display="none";
     document.getElementById("account-zone").style.display="none";
@@ -276,7 +281,6 @@ window.handleOptionBtn = (theID) => {
 
 //function that marks a task as checked or unchecked
 window.handleLeft = (someID, strikethrough) => {
-    alert("item ID is: "+someID);
     let exactLocationOfItemInDB = ref(database, `tasks/${someID}`);
     if(strikethrough == false){
         update(exactLocationOfItemInDB, {2:true});

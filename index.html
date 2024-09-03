@@ -17,7 +17,7 @@
 
     <!--Our stylesheet-->
     <link rel="stylesheet" type="text/css" href="style.css">
-    <!--Script--(module because we import module (functions) from firbease)-->
+    <!--Script--(module because we import module (functions) from firebase)-->
     <script type="module" src="script.js"></script>
 
 
@@ -85,6 +85,9 @@
                     <button id="removeAll-button">
                         <span class="material-symbols-outlined">delete</span>
                     </button>
+                    <button id="logout-button">
+                        <span class="material-symbols-outlined">logout</span>
+                    </button>
                 </div>
             </div>
             
@@ -92,19 +95,25 @@
 
 
                 <div id="action-zone">
-                    <ul id="task-list">
 
+                    <ul id="task-list">
                     </ul>
+
                     <div id="account-zone">
                         <p>Last Login: </p>
-                        <p>Delete Account - Warning cannot undo</p>
+                        <br/>
+                        <button>Delete Account</button> <span style="color:red">- Warning cannot undo</span>
                     </div>
-                    <div id="darkMode-zone">
 
+                    <div id="darkMode-zone">
                     </div>
+
                     <div id="about-zone">
-                        <p>About this website</p>
+                        <p>This app was design to help people become more productive.</p>
+                        <br />
+                        <p>This app will always be free. If you would like to support my work.</p>
                     </div>
+
                 </div>
 
                 
