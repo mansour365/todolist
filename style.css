@@ -651,12 +651,9 @@ ul li:hover{
 
 
 /*-----------------Login Portion------------------*/
-#login-title{
-    margin: auto;
-}
 #loginCard{
-    width: 300px;
-    height: 300px;
+    width: 500px;
+    height: 700px;
     background-color: rgb(255, 255, 255);
     margin: auto;
     padding: 20px;
@@ -664,7 +661,97 @@ ul li:hover{
     display:flex;
     flex-direction: column;
 }
+#product-name{
+    margin-top: 60px;
+    margin-left:auto;
+    margin-right:auto;
+    font-weight:600;
+    font-size: 28px;
+}
+#login-title{
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: 100px;
+    margin-bottom: 60px;
+    font-size: 20px;
+    font-weight:300;
+    color:grey;
+    letter-spacing: 0.5px;;
+}
+#login-input-area{
+    border: red 1px dotted;
+    margin-left:auto;
+    margin-right:auto;
+    width: 300px;
+}
+#email-label{
+    font-size: 13px;
+    color:rgb(167, 167, 167);
+}
+#email{
+    width:98%;
+    height:35px;
+    border: none;
+    border-bottom: 1px solid rgb(204,204,204);
+}
+#email::placeholder{
+    font-size: 15px;
+    padding:0;
+}
+#password-label{
+    font-size: 13px;
+    color:rgb(167, 167, 167);
+}
+#password{
+    width:98%;
+    height:35px;
+    border: none;
+    border-bottom: 1px solid rgb(204,204,204);
+}
+#forgot{
+    margin-left:209px;
+    margin-top:10px;
+
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    text-decoration: none;
+    /*optional*/
+    /*font-family: arial, sans-serif;*/
+    /*input has OS specific font-family*/
+    color: rgb(104, 143, 92);
+
+    cursor: pointer;
+    font-size: 11px;
+
+}
 /*Hidden sign up button*/
+#sign-in{
+    margin-left:auto;
+    margin-right:auto;
+    width:150px;
+    border: none;
+    background-color:darkolivegreen;
+    color:white;
+    padding:10px;
+    border-radius: 20px;
+    font-size:15px;
+    letter-spacing: 0.5px;
+
+}
+#create-account{
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    text-decoration: none;
+    /*optional*/
+    /*font-family: arial, sans-serif;*/
+    /*input has OS specific font-family*/
+    color: rgb(104, 143, 92);
+
+    cursor: pointer;
+    font-size: 11px;
+}
 #sign-up{
     display:none;
 }
